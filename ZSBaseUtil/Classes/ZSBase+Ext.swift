@@ -11,16 +11,16 @@ import Foundation
 // MARK: - UIView扩展
 @objc extension UIView {
     
-    var zs_x: CGFloat {
+    public var zs_x: CGFloat {
         set{
-           self.frame.origin.x = newValue
+            self.frame.origin.x = newValue
         }
         get{
-           return self.frame.minX
+            return self.frame.minX
         }
     }
     
-    var zs_y: CGFloat {
+    public var zs_y: CGFloat {
         set{
             self.frame.origin.y = newValue
         }
@@ -29,16 +29,16 @@ import Foundation
         }
     }
     
-    var zs_w: CGFloat {
+    public var zs_w: CGFloat {
         set{
             self.frame.size.width = newValue
         }
         get{
-           return self.frame.width
+            return self.frame.width
         }
     }
     
-    var zs_h: CGFloat {
+    public var zs_h: CGFloat {
         set{
             self.frame.size.height = newValue
         }
@@ -47,13 +47,13 @@ import Foundation
         }
     }
     
-    var zs_maxX: CGFloat {
+    public var zs_maxX: CGFloat {
         get {
             return self.frame.maxX
         }
     }
     
-    var zs_maxY: CGFloat {
+    public var zs_maxY: CGFloat {
         get {
             return self.frame.maxY
         }
@@ -111,7 +111,7 @@ import Foundation
     }
     
     public class func paramsValue(_ object: Any?) -> Any {
-     
+        
         guard isEmpty(object) else { return object! }
         
         return ""
