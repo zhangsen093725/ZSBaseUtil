@@ -35,13 +35,38 @@ extension UILabel {
 
 // MARK: - UIViewController扩展
 extension UIViewController {
-
+    
     public func presentRootController(animated: Bool = false, complete: (()->Void)? = nil) {
-
+        
         if let presentedViewController = UIApplication.shared.keyWindow?.rootViewController?.presentedViewController {
             presentedViewController.present(self, animated: animated, completion: complete)
         }else{
             UIApplication.shared.keyWindow?.rootViewController?.present(self, animated: animated, completion: complete)
         }
     }
+}
+
+
+// MARK: - UIView扩展
+extension UIView {
+    
+    public class var zs_currentControllerView: UIView? {
+        get {
+            var controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
+            
+            while (controller?.presentedViewController != nil && !(controller?.presentedViewController is UIAlertController)) {
+                controller = controller?.presentedViewController
+            }
+            return controller?.view
+        }
+    }
+    
+    public func addSubviewToControllerView() {
+        UIView.zs_currentControllerView?.addSubview(self)
+    }
+    
+    public func addSubviewToRootControllerView() {
+        UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(self)
+    }
+    
 }

@@ -152,12 +152,12 @@ extension Dictionary {
 }
 
 
-// MARK: - NSString扩展
-@objc public extension NSString {
+// MARK: - String扩展
+public extension String {
     
     var zs_isInt: Bool {
         get {
-            let scan = Scanner(string: self as String)
+            let scan = Scanner(string: self)
             var val: Int = 0
             return scan.scanInt(&val) && scan.isAtEnd
         }
@@ -165,7 +165,7 @@ extension Dictionary {
     
     var zs_isFloat: Bool {
         get {
-            let scan = Scanner(string: self as String)
+            let scan = Scanner(string: self)
             var val: Float = 0
             return scan.scanFloat(&val) && scan.isAtEnd
         }
@@ -177,9 +177,16 @@ extension Dictionary {
         }
     }
     
+    var zs_isValidUrl: Bool {
+        get {
+            let predcate: NSPredicate = NSPredicate(format: "SELF MATCHES%@", #"http[s]{0,1}://[^\s]*"#)
+            return predcate.evaluate(with: self)
+        }
+    }
+    
     var zs_url: NSURL? {
         get {
-            return NSURL(string: self as String)
+            return NSURL(string: self)
         }
     }
     
@@ -213,10 +220,10 @@ extension Dictionary {
         tempAttribute?[.font] = font
         tempAttribute?[.paragraphStyle] = paraStyle
         
-        return NSAttributedString(string: self as String, attributes: tempAttribute)
+        return NSAttributedString(string: self, attributes: tempAttribute)
     }
     
-    class var deviceVersion: String {
+    static var deviceVersion: String {
         
         var systemInfo = utsname()
         uname(&systemInfo)
@@ -281,7 +288,7 @@ extension Dictionary {
         case "iPhone11,4",
              "iPhone11,6":  return "iPhone XS Max"
             
-        
+            
         case "iPod1,1":     return "iPodTouch"
         case "iPod2,1":     return "iPodTouch 2"
         case "iPod3,1":     return "iPodTouch 3"
@@ -355,6 +362,62 @@ extension Dictionary {
             
         default: return plat
         }
+    }
+}
+
+
+// MARK: - NSString扩展
+@objc public extension NSString {
+    
+    var zs_isInt: Bool {
+        get {
+            return String(self).zs_isInt
+        }
+    }
+    
+    var zs_isFloat: Bool {
+        get {
+            return String(self).zs_isFloat
+        }
+    }
+    
+    var zs_isNumber: Bool {
+        get {
+            return String(self).zs_isNumber
+        }
+    }
+    
+    var zs_isValidUrl: Bool {
+        get {
+            return String(self).zs_isValidUrl
+        }
+    }
+    
+    var zs_url: NSURL? {
+        get {
+            return String(self).zs_url
+        }
+    }
+    
+    func zs_size(font: UIFont, textMaxSize: CGSize) -> CGSize {
+        
+        return String(self).zs_size(font: font, textMaxSize: textMaxSize)
+    }
+    
+    func zs_add(font: UIFont,
+                textMaxSize: CGSize = CGSize.zero,
+                attributes: Dictionary<NSAttributedString.Key, Any>? = nil,
+                alignment: NSTextAlignment = .left,
+                lineHeight: CGFloat = 0,
+                headIndent: CGFloat = 0,
+                tailIndent: CGFloat = 0,
+                isAutoLineBreak: Bool = false) -> NSAttributedString {
+        
+        return String(self).zs_add(font: font, textMaxSize: textMaxSize, attributes: attributes, alignment: alignment, lineHeight: lineHeight, headIndent: headIndent, tailIndent: tailIndent, isAutoLineBreak: isAutoLineBreak)
+    }
+    
+    class var deviceVersion: String {
+        return String.deviceVersion
     }
 }
 

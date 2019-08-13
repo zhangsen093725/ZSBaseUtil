@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ZSBaseUtil
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
