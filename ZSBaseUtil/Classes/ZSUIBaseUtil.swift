@@ -48,9 +48,57 @@ extension UIViewController {
 
 
 // MARK: - UIView扩展
-extension UIView {
+@objc public extension UIView {
     
-    public class var zs_currentControllerView: UIView? {
+    var zs_x: CGFloat {
+        set{
+            self.frame.origin.x = newValue
+        }
+        get{
+            return self.frame.minX
+        }
+    }
+    
+    var zs_y: CGFloat {
+        set{
+            self.frame.origin.y = newValue
+        }
+        get{
+            return self.frame.minY
+        }
+    }
+    
+    var zs_w: CGFloat {
+        set{
+            self.frame.size.width = newValue
+        }
+        get{
+            return self.frame.width
+        }
+    }
+    
+    var zs_h: CGFloat {
+        set{
+            self.frame.size.height = newValue
+        }
+        get{
+            return self.frame.height
+        }
+    }
+    
+    var zs_maxX: CGFloat {
+        get {
+            return self.frame.maxX
+        }
+    }
+    
+    var zs_maxY: CGFloat {
+        get {
+            return self.frame.maxY
+        }
+    }
+    
+    class var zs_currentControllerView: UIView? {
         get {
             var controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
             
@@ -61,12 +109,11 @@ extension UIView {
         }
     }
     
-    public func addSubviewToControllerView() {
+    func addSubviewToControllerView() {
         UIView.zs_currentControllerView?.addSubview(self)
     }
     
-    public func addSubviewToRootControllerView() {
+    func addSubviewToRootControllerView() {
         UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(self)
     }
-    
 }

@@ -8,60 +8,6 @@
 
 import Foundation
 
-// MARK: - UIView扩展
-@objc public extension UIView {
-    
-    var zs_x: CGFloat {
-        set{
-            self.frame.origin.x = newValue
-        }
-        get{
-            return self.frame.minX
-        }
-    }
-    
-    var zs_y: CGFloat {
-        set{
-            self.frame.origin.y = newValue
-        }
-        get{
-            return self.frame.minY
-        }
-    }
-    
-    var zs_w: CGFloat {
-        set{
-            self.frame.size.width = newValue
-        }
-        get{
-            return self.frame.width
-        }
-    }
-    
-    var zs_h: CGFloat {
-        set{
-            self.frame.size.height = newValue
-        }
-        get{
-            return self.frame.height
-        }
-    }
-    
-    var zs_maxX: CGFloat {
-        get {
-            return self.frame.maxX
-        }
-    }
-    
-    var zs_maxY: CGFloat {
-        get {
-            return self.frame.maxY
-        }
-    }
-    
-}
-
-
 // MARK: - Timer扩展 
 @objc public extension Timer {
     
