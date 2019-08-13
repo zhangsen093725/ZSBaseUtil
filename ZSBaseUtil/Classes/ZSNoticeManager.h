@@ -24,7 +24,7 @@
 - (void)addObservers;
 - (void)addKeyboardObserver;
 - (void)addEnterBackForeObserver;
-- (void)addTakeScreenshot;
+//- (void)addTakeScreenshot;
 
 - (void)stopObservers;
 - (void)stopKeyboardObserver;
