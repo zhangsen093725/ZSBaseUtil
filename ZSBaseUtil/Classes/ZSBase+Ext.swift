@@ -386,6 +386,41 @@ public extension String {
         return NSAttributedString(attachment: attchment)
     }
     
+    func zs_add(font: UIFont,
+                textMaxSize: CGSize = CGSize.zero,
+                attributes: Dictionary<NSAttributedString.Key, Any>? = nil,
+                alignment: NSTextAlignment = .left,
+                lineHeight: CGFloat = 0,
+                headIndent: CGFloat = 0,
+                tailIndent: CGFloat = 0,
+                isAutoLineBreak: Bool = false) -> NSAttributedString {
+        
+        let paraStyle = NSMutableParagraphStyle()
+        paraStyle.lineSpacing = zs_size(textMaxSize: textMaxSize).height > font.lineHeight ? lineHeight : 0
+
+        if !isAutoLineBreak {
+            paraStyle.lineBreakMode = .byTruncatingTail
+        }
+        
+        paraStyle.alignment = alignment
+        paraStyle.firstLineHeadIndent = headIndent
+        paraStyle.headIndent = headIndent
+        paraStyle.tailIndent = tailIndent
+        
+        var tempAttribute = attributes
+        
+        tempAttribute?[.font] = font
+        tempAttribute?[.paragraphStyle] = paraStyle
+        
+        let mutable: NSMutableAttributedString = NSMutableAttributedString(attributedString: self)
+        
+        guard let attribute = tempAttribute else { return self }
+        
+        mutable.addAttributes(attribute, range: NSRange(location: 0, length: self.string.count))
+        
+        return mutable.copy() as! NSAttributedString
+    }
+    
     func zs_size(textMaxSize: CGSize) -> CGSize {
         return self.boundingRect(with: textMaxSize, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).size
     }
