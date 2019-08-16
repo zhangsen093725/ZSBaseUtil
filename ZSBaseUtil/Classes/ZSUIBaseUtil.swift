@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - UITableView扩展
-extension UITableView {
+@objc extension UITableView {
     open override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         self.estimatedRowHeight = 0
@@ -19,7 +19,7 @@ extension UITableView {
 
 
 // MARK: - UILabel扩展
-extension UILabel {
+@objc extension UILabel {
     
     public var attributedTextTail: NSAttributedString? {
         set {
@@ -34,7 +34,7 @@ extension UILabel {
 
 
 // MARK: - UIViewController扩展
-extension UIViewController {
+@objc extension UIViewController {
     
     public func presentRootController(animated: Bool = false, complete: (()->Void)? = nil) {
         
