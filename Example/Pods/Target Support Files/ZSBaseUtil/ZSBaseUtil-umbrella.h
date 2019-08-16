@@ -10,7 +10,6 @@
 #endif
 #endif
 
-#import "ZSNoticeManager.h"
 
 FOUNDATION_EXPORT double ZSBaseUtilVersionNumber;
 FOUNDATION_EXPORT const unsigned char ZSBaseUtilVersionString[];
