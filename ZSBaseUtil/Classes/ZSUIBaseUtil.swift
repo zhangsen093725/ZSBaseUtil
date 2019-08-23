@@ -23,8 +23,23 @@ import Foundation
     
     public var attributedTextTail: NSAttributedString? {
         set {
-            self.attributedText = attributedTextTail;
-            self.lineBreakMode = .byTruncatingTail;
+            attributedText = newValue
+            lineBreakMode = .byTruncatingTail
+        }
+        get {
+            return attributedText
+        }
+    }
+}
+
+
+// MARK: - UITextView扩展
+@objc extension UITextView {
+    
+    public var attributedTextTail: NSAttributedString? {
+        set {
+            attributedText = newValue
+            textContainer.lineBreakMode = .byTruncatingTail
         }
         get {
             return attributedText
