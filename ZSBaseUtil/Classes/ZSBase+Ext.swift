@@ -70,6 +70,10 @@ extension Dictionary {
         
         guard object != nil else { return true }
         
+        if let _: NSNull = object as? NSNull {
+            return true
+        }
+        
         if let array: NSArray = object as? NSArray {
             return array.count == 0
         }
