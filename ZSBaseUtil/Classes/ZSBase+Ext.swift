@@ -410,18 +410,15 @@ public extension String {
         paraStyle.firstLineHeadIndent = headIndent
         paraStyle.headIndent = headIndent
         paraStyle.tailIndent = tailIndent
+
+        guard let mutable: NSMutableAttributedString = self.mutableCopy() as? NSMutableAttributedString else { return self }
         
-        var tempAttribute = attributes
+        guard var tempAttribute = attributes else { return self }
         
-        tempAttribute?[.font] = font
-        tempAttribute?[.paragraphStyle] = paraStyle
-        
-        let mutable: NSMutableAttributedString = NSMutableAttributedString(attributedString: self)
-        
-        guard let attribute = tempAttribute else { return self }
-        
-        mutable.addAttributes(attribute, range: NSRange(location: 0, length: self.string.count))
-        
+        tempAttribute[.font] = font
+        tempAttribute[.paragraphStyle] = paraStyle
+
+        mutable.addAttributes(tempAttribute, range: NSMakeRange(0, self.length))
         return mutable.copy() as! NSAttributedString
     }
     
