@@ -95,9 +95,9 @@ extension Dictionary {
     
     class func zs_paramsValue(_ object: Any?) -> Any {
         
-        guard zs_isEmpty(object) else { return object! }
+        guard object != nil else { return NSNull() }
         
-        return ""
+        return object!
     }
 }
 
