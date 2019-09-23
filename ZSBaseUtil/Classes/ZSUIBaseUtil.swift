@@ -51,13 +51,24 @@ import Foundation
 // MARK: - UIViewController扩展
 @objc extension UIViewController {
     
-    public func presentRootController(animated: Bool = false, complete: (()->Void)? = nil) {
+    public func presentRootController(animated: Bool = false,
+                                      complete: (()->Void)? = nil) {
         
         if let presentedViewController = UIApplication.shared.keyWindow?.rootViewController?.presentedViewController {
             presentedViewController.present(self, animated: animated, completion: complete)
         }else{
             UIApplication.shared.keyWindow?.rootViewController?.present(self, animated: animated, completion: complete)
         }
+    }
+    
+    public func presentViewController(_ controller: UIViewController,
+                                      animated: Bool = true,
+                                      modalPresentationStyle: UIModalPresentationStyle = .fullScreen,
+                                      complete: (() -> Void)? = nil) {
+        
+        controller.modalPresentationStyle = modalPresentationStyle
+        self.present(controller, animated: animated, completion: complete)
+        
     }
 }
 
@@ -130,5 +141,35 @@ import Foundation
     
     func addSubviewToRootControllerView() {
         UIApplication.shared.keyWindow?.rootViewController?.view.addSubview(self)
+    }
+}
+
+
+
+
+// MARK: - UIColor扩展
+@objc extension UIColor {
+ 
+    public func dark(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ alpha: CGFloat) -> UIColor {
+        return dark(UIColor.init(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: alpha))
+    }
+    
+    public func dark(_ color: UIColor) -> UIColor {
+        
+        if #available(iOS 13.0, *) {
+            return UIColor { [unowned self] (traitCollection) -> UIColor in
+                
+                switch traitCollection.userInterfaceStyle {
+                case .light:
+                    return self
+                case .dark:
+                    return color
+                default:
+                    fatalError()
+                }
+            }
+        } else {
+            return self
+        }
     }
 }

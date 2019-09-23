@@ -29,24 +29,6 @@ import Foundation
 }
 
 
-
-// MARK: - Dictionary扩展
-extension Dictionary {
-    
-    public var zs_json: String? {
-        get{
-            do {
-                let jsonData = try JSONSerialization.data(withJSONObject: self, options: [])
-                return String.init(data: jsonData, encoding: .utf8)
-            } catch {
-                return nil
-            }
-        }
-    }
-}
-
-
-
 // MARK: - NSObject扩展
 @objc public extension NSObject {
     
