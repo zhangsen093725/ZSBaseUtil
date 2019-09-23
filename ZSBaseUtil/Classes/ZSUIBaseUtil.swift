@@ -64,10 +64,10 @@ import Foundation
     public func presentViewController(_ controller: UIViewController,
                                       animated: Bool = true,
                                       modalPresentationStyle: UIModalPresentationStyle = .fullScreen,
-                                      complete: (() -> Void)? = nil) {
+                                      completion: (() -> Void)? = nil) {
         
         controller.modalPresentationStyle = modalPresentationStyle
-        self.present(controller, animated: animated, completion: complete)
+        self.present(controller, animated: animated, completion: completion)
         
     }
 }
