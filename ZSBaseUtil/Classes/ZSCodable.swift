@@ -8,7 +8,7 @@
 
 import Foundation
 
-fileprivate enum ZSCodableError: Error {
+public enum ZSCodableError: Error {
     /// json转model失败
     case zs_jsonToModelFail
     /// json转data失败
@@ -21,13 +21,13 @@ fileprivate enum ZSCodableError: Error {
     case zs_modelToJsonFail
 }
 
-protocol ZSCodable: Codable {
+public protocol ZSCodable: Codable {
     
     func modelCodableFinished()
     mutating func structCodableFinish()
 }
 
-extension ZSCodable {
+public extension ZSCodable {
     
     func modelCodableFinished() {}
     
@@ -109,7 +109,7 @@ extension Dictionary {
     }
 }
 
-extension Array {
+public extension Array {
     
     func zs_toJSONString() -> String? {
     
@@ -141,7 +141,7 @@ extension Array {
 }
 
 
-extension String {
+public extension String {
     
     func zs_toDictionary() -> [String : Any]? {
         
@@ -163,10 +163,10 @@ extension String {
 
 
 
-extension KeyedDecodingContainer {
+public extension KeyedDecodingContainer {
     
     /// 防止Int类型数据在JSON中是String的类型
-    public func decodeIfPresent(_ type: Int.Type, forKey key: K) throws -> Int? {
+    func decodeIfPresent(_ type: Int.Type, forKey key: K) throws -> Int? {
         
         if let value = try? decode(type, forKey: key) {
             return value
@@ -181,7 +181,7 @@ extension KeyedDecodingContainer {
     
     
     /// 防止String类型数据在JSON中是Int的类型
-    public func decodeIfPresent(_ type: String.Type, forKey key: K) throws -> String? {
+    func decodeIfPresent(_ type: String.Type, forKey key: K) throws -> String? {
         
         if let value = try? decode(type, forKey: key) {
             return value
@@ -196,7 +196,7 @@ extension KeyedDecodingContainer {
     
     
     /// 防止 Dictionary, Array, SubModel 解析失败
-    public func decodeIfPresent<T>(_ type: T.Type, forKey key: K) throws -> T? where T : Decodable {
+    func decodeIfPresent<T>(_ type: T.Type, forKey key: K) throws -> T? where T : Decodable {
         
         return try? decode(type, forKey: key)
     }

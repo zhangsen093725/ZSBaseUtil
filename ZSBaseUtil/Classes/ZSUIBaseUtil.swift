@@ -157,7 +157,7 @@ import Foundation
     public func dark(_ color: UIColor) -> UIColor {
         
         if #available(iOS 13.0, *) {
-            return UIColor { [unowned self] (traitCollection) -> UIColor in
+            return UIColor { (traitCollection) -> UIColor in
                 
                 switch traitCollection.userInterfaceStyle {
                 case .light:
