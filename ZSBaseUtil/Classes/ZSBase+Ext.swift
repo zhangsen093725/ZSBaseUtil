@@ -77,7 +77,7 @@ import Foundation
     
     class func zs_paramsValue(_ object: Any?) -> Any {
         
-        guard object != nil else { return NSNull() }
+        guard object != nil else { return "" }
         
         return object!
     }
