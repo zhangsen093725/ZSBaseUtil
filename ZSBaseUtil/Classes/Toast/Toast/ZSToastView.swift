@@ -8,41 +8,6 @@
 
 import UIKit
 
-private enum KDevice {
-    
-    // MARK: - 屏幕宽高、frame
-    static let width: CGFloat = UIScreen.main.bounds.width
-    static let height: CGFloat = UIScreen.main.bounds.height
-    static let frame: CGRect = UIScreen.main.bounds
-    
-    // MARK: - 屏幕16:9比例系数下的宽高
-    static let width16_9: CGFloat = KDevice.height * 9.0 / 16.0
-    static let height16_9: CGFloat = KDevice.width * 16.0 / 9.0
-    
-    // MARK: - 关于刘海屏幕适配
-    static let tabbarHeight: CGFloat = KDevice.aboveiPhoneX ? 83 : 49
-    static let homeHeight: CGFloat = KDevice.aboveiPhoneX ? 34 : 0
-    static let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
-    
-    // MARK: - 设备类型
-    static let isPhone: Bool = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone)
-    static let isPad: Bool = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad)
-    static let aboveiPhoneX: Bool = (Float(String(format: "%.2f", 9.0 / 19.5)) == Float(String(format: "%.2f", KDevice.width / KDevice.height)))
-}
-
-private let KWidthUnit: CGFloat = KDevice.width / (KDevice.isPad ? 768.0 : 375.0)
-private let KHeightUnit: CGFloat = KDevice.isPad ? KDevice.height / 1024.0 : ( KDevice.aboveiPhoneX ? KDevice.height16_9 / 667.0 : KDevice.height / 667.0 )
-
-private func KFont(_ font: CGFloat) -> UIFont {
-    return UIFont.systemFont(ofSize: font * KHeightUnit)
-}
-
-private func KColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ alpha: CGFloat) -> UIColor {
-    return UIColor.init(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: alpha)
-}
-
-
-
 // MARK: - 弹窗按钮
 @objc public enum ZSPopActionType: Int {
     case done = 0, cancel
@@ -69,8 +34,8 @@ private func KColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ alpha: 
         
         let popAction = ZSPopAction(type: .system)
         popAction.tintColor = .clear
-        popAction.setTitleColor(KColor(82, 82, 82, 1), for: .normal)
-        popAction.titleLabel?.font = KDevice.isPad ? KFont(17) : KFont(15)
+        popAction.setTitleColor(toastColor(82, 82, 82, 1), for: .normal)
+        popAction.titleLabel?.font = toastDevice.isPad ? toastFont(17) : toastFont(15)
         popAction.type = type
         popAction.action = action
         
@@ -88,7 +53,7 @@ public class ZSPopBaseView: UIView {
         
         let view = UIScrollView()
         view.backgroundColor = .white
-        view.layer.shadowColor = KColor(189, 189, 189, 1).cgColor
+        view.layer.shadowColor = toastColor(189, 189, 189, 1).cgColor
         view.layer.shadowOffset = CGSize(width: 0, height: 2)
         view.layer.shadowOpacity = 1
         view.clipsToBounds = true
@@ -100,8 +65,8 @@ public class ZSPopBaseView: UIView {
         
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = KColor(21, 23, 35, 1)
-        label.font = KDevice.isPad ? KFont(20) : KFont(16)
+        label.textColor = toastColor(21, 23, 35, 1)
+        label.font = toastDevice.isPad ? toastFont(20) : toastFont(16)
         label.textAlignment = .center
         backView.addSubview(label)
         return label
@@ -110,7 +75,7 @@ public class ZSPopBaseView: UIView {
     fileprivate var lineLabel: UILabel {
         get {
             let label = UILabel()
-            label.backgroundColor = KColor(239, 239, 239, 1)
+            label.backgroundColor = toastColor(239, 239, 239, 1)
             backView.addSubview(label)
             return label
         }
@@ -121,7 +86,7 @@ public class ZSPopBaseView: UIView {
     fileprivate func layoutToView() {
         frame = UIScreen.main.bounds
         alpha = 1
-        backgroundColor = KColor(0, 0, 0, 0.5)
+        backgroundColor = toastColor(0, 0, 0, 0.5)
         
         var controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
         
@@ -152,36 +117,36 @@ public class ZSPopBaseView: UIView {
     
     private func getMessageAttribute(_ message: String, textMaxSize: CGSize) -> Dictionary<NSAttributedString.Key, Any> {
         
-        let msgFont = KDevice.isPad ? KFont(16) : KFont(14)
+        let msgFont = toastDevice.isPad ? toastFont(16) : toastFont(14)
         var tempAttribute: Dictionary<NSAttributedString.Key, Any>? = [.font : msgFont]
         
         let msgHeight = message.boundingRect(with: textMaxSize, options: .usesLineFragmentOrigin, attributes: tempAttribute, context: nil).size.height
-        let lineHeight = 8 * KHeightUnit
+        let lineHeight = 8 * toastHeightUnit
         
         let paraStyle = NSMutableParagraphStyle()
         
         paraStyle.lineSpacing = msgHeight > msgFont.lineHeight ? lineHeight : 0
         paraStyle.alignment = .center
  
-        tempAttribute?[.foregroundColor] = KColor(82, 82, 82, 1)
+        tempAttribute?[.foregroundColor] = toastColor(82, 82, 82, 1)
         tempAttribute?[.paragraphStyle] = paraStyle
         return tempAttribute!
     }
     
     private func layoutBackView(_ backX: CGFloat, backHeight: CGFloat) {
         
-        let backH = min(backHeight, 470 * KHeightUnit)
-        backView.frame = CGRect(x: backX, y: (KDevice.height - backH) * 0.5, width: KDevice.width - 2 * backX, height: backH)
+        let backH = min(backHeight, 470 * toastHeightUnit)
+        backView.frame = CGRect(x: backX, y: (toastDevice.height - backH) * 0.5, width: toastDevice.width - 2 * backX, height: backH)
         backView.contentSize = CGSize(width: 0, height: backHeight)
-        backView.layer.cornerRadius = 15 * KHeightUnit
-        backView.layer.shadowRadius = 15 * KHeightUnit
+        backView.layer.cornerRadius = 15 * toastHeightUnit
+        backView.layer.shadowRadius = 15 * toastHeightUnit
     }
     
     private func layoutAction() {
         
         var actionWidth = backView.frame.width
-        var actionHeight = (KDevice.isPad ? 50 : 40) * KHeightUnit
-        var actionY = messageLabel.frame.maxY + 32 * KHeightUnit
+        var actionHeight = (toastDevice.isPad ? 50 : 40) * toastHeightUnit
+        var actionY = messageLabel.frame.maxY + 32 * toastHeightUnit
         
         if actions?.count == 2 {
             actionWidth = backView.frame.width * 0.5
@@ -253,9 +218,9 @@ public class ZSPopBaseView: UIView {
     
     public func alert(title: String? = nil, message: String? = nil) {
         
-        let backX = (KDevice.isPad ? 220 : 45) * KWidthUnit
-        let labelX = 31 * KWidthUnit
-        let labelW = KDevice.width - (backX + labelX) * 2
+        let backX = (toastDevice.isPad ? 220 : 45) * toastWidthUnit
+        let labelX = 31 * toastWidthUnit
+        let labelW = toastDevice.width - (backX + labelX) * 2
         let textSize = CGSize(width: labelW, height: CGFloat(MAXFLOAT))
         
         var messageAttribute: NSAttributedString?
@@ -264,13 +229,13 @@ public class ZSPopBaseView: UIView {
             messageAttribute = NSAttributedString(string: message!, attributes: getMessageAttribute(message!, textMaxSize: textSize))
         }
         
-        let titleHeight: CGFloat = title?.boundingRect(with: textSize, options: .usesLineFragmentOrigin, attributes: [.font : titleLabel.font ?? KFont(0)], context: nil).size.height ?? 0
+        let titleHeight: CGFloat = title?.boundingRect(with: textSize, options: .usesLineFragmentOrigin, attributes: [.font : titleLabel.font ?? toastFont(0)], context: nil).size.height ?? 0
         
         let msgAttributeHeight: CGFloat = messageAttribute?.boundingRect(with: textSize, options: [.usesFontLeading, .usesLineFragmentOrigin], context: nil).size.height ?? 0
         
-        let textSpace = 32 * KHeightUnit
+        let textSpace = 32 * toastHeightUnit
         
-        let actionHeight = (KDevice.isPad ? 50 : 40) * KHeightUnit * CGFloat(actions?.count != 2 ? (actions?.count ?? 0) : 1)
+        let actionHeight = (toastDevice.isPad ? 50 : 40) * toastHeightUnit * CGFloat(actions?.count != 2 ? (actions?.count ?? 0) : 1)
         
         let space = textSpace * (titleHeight > 0 ? (msgAttributeHeight > 0 ? 2.5 : 2) : (msgAttributeHeight > 0 ? 1.5 : 1))
         
@@ -294,17 +259,17 @@ public class ZSPopBaseView: UIView {
 @objcMembers public class ZSSheetView: ZSPopBaseView {
     
     public var sheetSpace: CGFloat = 0
-    public var sheetActionHeight: CGFloat = (KDevice.isPad ? 120 : 40) * KHeightUnit
+    public var sheetActionHeight: CGFloat = (toastDevice.isPad ? 120 : 40) * toastHeightUnit
     
     public func sheet(title: String? = nil) {
         
-        let titleLabelX = 20 * KWidthUnit
-        let backWidth = KDevice.width - 2 * sheetSpace
+        let titleLabelX = 20 * toastWidthUnit
+        let backWidth = toastDevice.width - 2 * sheetSpace
         let titleWidth = backWidth - 2 * titleLabelX
         
-        let titleHeight: CGFloat = title?.boundingRect(with: CGSize(width: titleWidth, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [.font : titleLabel.font ?? KFont(0)], context: nil).size.height ?? 0
+        let titleHeight: CGFloat = title?.boundingRect(with: CGSize(width: titleWidth, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [.font : titleLabel.font ?? toastFont(0)], context: nil).size.height ?? 0
         
-        let textSpace = titleHeight > 0 ? 12 * KHeightUnit : 0
+        let textSpace = titleHeight > 0 ? 12 * toastHeightUnit : 0
         
         var actionHeight = sheetActionHeight
         actionHeight *= CGFloat(actions?.count ?? 0)
@@ -313,27 +278,27 @@ public class ZSPopBaseView: UIView {
         titleLabel.text = title
         
         layoutToView()
-        layoutBackView(sheetSpace, backHeight: titleLabel.frame.maxY + actionHeight + 20 * KHeightUnit)
+        layoutBackView(sheetSpace, backHeight: titleLabel.frame.maxY + actionHeight + 20 * toastHeightUnit)
         layoutAction()
     }
     
     
     private func layoutBackView(_ backX: CGFloat, backHeight: CGFloat) {
         
-        let backH = min(backHeight, 500 * KHeightUnit)
-        let sheetH = backH + KDevice.homeHeight + (sheetSpace > 0 ? 5 : 0) * KHeightUnit
+        let backH = min(backHeight, 500 * toastHeightUnit)
+        let sheetH = backH + toastDevice.homeHeight + (sheetSpace > 0 ? 5 : 0) * toastHeightUnit
 
-        backView.frame = CGRect(x: backX, y: KDevice.height - sheetH, width: KDevice.width - 2 * backX, height: sheetH)
+        backView.frame = CGRect(x: backX, y: toastDevice.height - sheetH, width: toastDevice.width - 2 * backX, height: sheetH)
         backView.contentSize = CGSize(width: 0, height: backHeight)
-        backView.layer.cornerRadius = sheetSpace > 0 ? 15 * KHeightUnit : 0
-        backView.layer.shadowRadius = sheetSpace > 0 ? 15 * KHeightUnit : 0
+        backView.layer.cornerRadius = sheetSpace > 0 ? 15 * toastHeightUnit : 0
+        backView.layer.shadowRadius = sheetSpace > 0 ? 15 * toastHeightUnit : 0
     }
     
     private func layoutAction() {
         
         let actionWidth = backView.frame.width
         var actionHeight = sheetActionHeight
-        var actionY = titleLabel.frame.maxY + 20 * KHeightUnit
+        var actionY = titleLabel.frame.maxY + 20 * toastHeightUnit
         
         guard let tempActions = actions else { return }
         
@@ -371,7 +336,7 @@ public class ZSPopBaseView: UIView {
     private func animation(_ values: Array<Any>?) {
         UIView.animate(withDuration: 0.2, animations: { [weak self] in
             self?.alpha = 0.1
-            self?.backView.frame.origin.y = KDevice.height
+            self?.backView.frame.origin.y = toastDevice.height
         }) { [weak self] (finished) in
             self?.removeFromSuperview()
         }
@@ -380,7 +345,7 @@ public class ZSPopBaseView: UIView {
     private func dismiss() {
         UIView.animate(withDuration: 0.2, animations: { [weak self] in
             self?.alpha = 0.1
-            self?.backView.frame.origin.y = KDevice.height
+            self?.backView.frame.origin.y = toastDevice.height
         }) { [weak self] (finished) in
             self?.removeFromSuperview()
         }
@@ -402,9 +367,9 @@ public class ZSPopBaseView: UIView {
     private lazy var tipLabel: UILabel = {
         
         let label = UILabel()
-        label.font = KFont(14)
+        label.font = toastFont(14)
         label.textAlignment = .center
-        label.textColor = KColor(254, 253, 253, 1)
+        label.textColor = toastColor(254, 253, 253, 1)
         label.clipsToBounds = true
         addSubview(label)
         return label
@@ -421,15 +386,15 @@ public class ZSPopBaseView: UIView {
         tipView.alpha = 0
         tipView.isUserInteractionEnabled = false
         
-        let titleSize: CGSize = title.boundingRect(with: CGSize(width: KDevice.width - (20 + spaceHorizontal) * KWidthUnit, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [.font : tipView.tipLabel.font ?? KFont(0)], context: nil).size
+        let titleSize: CGSize = title.boundingRect(with: CGSize(width: toastDevice.width - (20 + spaceHorizontal) * toastWidthUnit, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [.font : tipView.tipLabel.font ?? toastFont(0)], context: nil).size
         
-        let tipSize = CGSize(width: titleSize.width, height: numberOfLines > 0 ? CGFloat(numberOfLines) * 15.0 * KHeightUnit : titleSize.height)
+        let tipSize = CGSize(width: titleSize.width, height: numberOfLines > 0 ? CGFloat(numberOfLines) * 15.0 * toastHeightUnit : titleSize.height)
         
-        tipView.frame = CGRect(x: (KDevice.width - tipSize.width - spaceHorizontal) * 0.5, y: (KDevice.height - tipSize.height - spaceVertical) * 0.5, width: tipSize.width + spaceHorizontal, height: tipSize.height + spaceVertical)
+        tipView.frame = CGRect(x: (toastDevice.width - tipSize.width - spaceHorizontal) * 0.5, y: (toastDevice.height - tipSize.height - spaceVertical) * 0.5, width: tipSize.width + spaceHorizontal, height: tipSize.height + spaceVertical)
         
         tipView.tipLabel.frame = tipView.bounds
-        tipView.tipLabel.layer.cornerRadius = (tipSize.height > 15 * KHeightUnit ? 8 * KWidthUnit : (tipSize.height + spaceVertical) * 0.5)
-        tipView.tipLabel.backgroundColor = KColor(0, 0, 0, alpha)
+        tipView.tipLabel.layer.cornerRadius = (tipSize.height > 15 * toastHeightUnit ? 8 * toastWidthUnit : (tipSize.height + spaceVertical) * 0.5)
+        tipView.tipLabel.backgroundColor = toastColor(0, 0, 0, alpha)
         tipView.tipLabel.numberOfLines = numberOfLines
         tipView.tipLabel.text = title
         
@@ -473,4 +438,39 @@ public class ZSPopBaseView: UIView {
                               numberOfLines: Int) {
         self.tip(title: title, numberOfLines: numberOfLines)
     }
+}
+
+
+
+private enum toastDevice {
+    
+    // MARK: - 屏幕宽高、frame
+    static let width: CGFloat = UIScreen.main.bounds.width
+    static let height: CGFloat = UIScreen.main.bounds.height
+    static let frame: CGRect = UIScreen.main.bounds
+    
+    // MARK: - 屏幕16:9比例系数下的宽高
+    static let width16_9: CGFloat = toastDevice.height * 9.0 / 16.0
+    static let height16_9: CGFloat = toastDevice.width * 16.0 / 9.0
+    
+    // MARK: - 关于刘海屏幕适配
+    static let tabbarHeight: CGFloat = toastDevice.aboveiPhoneX ? 83 : 49
+    static let homeHeight: CGFloat = toastDevice.aboveiPhoneX ? 34 : 0
+    static let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
+    
+    // MARK: - 设备类型
+    static let isPhone: Bool = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone)
+    static let isPad: Bool = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad)
+    static let aboveiPhoneX: Bool = (Float(String(format: "%.2f", 9.0 / 19.5)) == Float(String(format: "%.2f", toastDevice.width / toastDevice.height)))
+}
+
+private let toastWidthUnit: CGFloat = toastDevice.width / (toastDevice.isPad ? 768.0 : 375.0)
+private let toastHeightUnit: CGFloat = toastDevice.isPad ? toastDevice.height / 1024.0 : ( toastDevice.aboveiPhoneX ? toastDevice.height16_9 / 667.0 : toastDevice.height / 667.0 )
+
+private func toastFont(_ font: CGFloat) -> UIFont {
+    return UIFont.systemFont(ofSize: font * toastHeightUnit)
+}
+
+private func toastColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ alpha: CGFloat) -> UIColor {
+    return UIColor.init(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: alpha)
 }

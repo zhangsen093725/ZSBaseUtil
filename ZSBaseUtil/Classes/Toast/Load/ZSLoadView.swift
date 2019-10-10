@@ -8,61 +8,6 @@
 
 import UIKit
 
-private enum KDevice {
-    
-    // MARK: - 屏幕宽高、frame
-    static let width: CGFloat = UIScreen.main.bounds.width
-    static let height: CGFloat = UIScreen.main.bounds.height
-    static let frame: CGRect = UIScreen.main.bounds
-    
-    // MARK: - 屏幕16:9比例系数下的宽高
-    static let width16_9: CGFloat = KDevice.height * 9.0 / 16.0
-    static let height16_9: CGFloat = KDevice.width * 16.0 / 9.0
-    
-    // MARK: - 关于刘海屏幕适配
-    static let tabbarHeight: CGFloat = KDevice.aboveiPhoneX ? 83 : 49
-    static let homeHeight: CGFloat = KDevice.aboveiPhoneX ? 34 : 0
-    static let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
-    
-    // MARK: - 设备类型
-    static let isPhone: Bool = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone)
-    static let isPad: Bool = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad)
-    static let aboveiPhoneX: Bool = (Float(String(format: "%.2f", 9.0 / 19.5)) == Float(String(format: "%.2f", KDevice.width / KDevice.height)))
-}
-
-private let KWidthUnit: CGFloat = KDevice.width / (KDevice.isPad ? 768.0 : 375.0)
-private let KHeightUnit: CGFloat = KDevice.isPad ? KDevice.height / 1024.0 : ( KDevice.aboveiPhoneX ? KDevice.height16_9 / 667.0 : KDevice.height / 667.0 )
-
-private func KFont(_ font: CGFloat) -> UIFont {
-    return UIFont.systemFont(ofSize: font * KHeightUnit)
-}
-
-private func KColor(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ alpha: CGFloat) -> UIColor {
-    return UIColor.init(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: alpha)
-}
-
-
-private extension Timer {
-    
-    class func zs_supportiOS_10EarlierTimer(_ interval: TimeInterval, repeats: Bool, block: @escaping (_ timer: Timer) -> Void) -> Timer {
-        
-        if #available(iOS 10.0, *) {
-            return Timer.init(timeInterval: interval, repeats: repeats, block: block)
-        } else {
-            return Timer.init(timeInterval: interval, target: self, selector: #selector(runTimer(_:)), userInfo: block, repeats: repeats)
-        }
-    }
-    
-    @objc private class func runTimer(_ timer: Timer) -> Void {
-        
-        guard let block: ((Timer) -> Void) = timer.userInfo as? ((Timer) -> Void) else { return }
-        
-        block(timer)
-    }
-}
-
-
-
 // MARK: - ZSLoadingView
 @objcMembers public class ZSLoadingView: UIView {
     
@@ -105,7 +50,7 @@ private extension Timer {
     private func startTimer() {
         guard timer == nil else { return }
         
-        timer = Timer.zs_supportiOS_10EarlierTimer(0.025, repeats: true, block: { [unowned self] (timer) in
+        timer = Timer.supportiOS_10EarlierTimer(0.025, repeats: true, block: { [unowned self] (timer) in
             
             if self.startRatio >= 2.1 {
                 self.startRatio = 0.1
@@ -129,7 +74,7 @@ private extension Timer {
         
         if view == nil {
             
-            frame = CGRect(x: (KDevice.width - 80 * KHeightUnit) * 0.5, y: (KDevice.height - 80 * KHeightUnit) * 0.5, width: 80 * KHeightUnit, height: 80 * KHeightUnit)
+            frame = CGRect(x: (loadDevice.width - 80 * load_HeightUnit) * 0.5, y: (loadDevice.height - 80 * load_HeightUnit) * 0.5, width: 80 * load_HeightUnit, height: 80 * load_HeightUnit)
             
             var controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
             
@@ -143,7 +88,7 @@ private extension Timer {
             let viewWidth = view!.frame.width
             let viewHeight = view!.frame.height
             
-            let size = viewWidth > 0 ? 80 * KHeightUnit : 0
+            let size = viewWidth > 0 ? 80 * load_HeightUnit : 0
             
             frame = CGRect(x: (viewWidth - size) * 0.5, y: (viewHeight - size) * 0.5, width: size, height: size)
             
@@ -152,7 +97,7 @@ private extension Timer {
 
         alpha = 1
         backgroundColor = isBackColorClear ? .clear : KColor(0, 0, 0, 0.7)
-        layer.cornerRadius = 10 * KHeightUnit
+        layer.cornerRadius = 10 * load_HeightUnit
         clipsToBounds = true
         setNeedsDisplay()
         
@@ -177,5 +122,59 @@ private extension Timer {
     
     public class func stopAnimation() {
         ZSLoadingView.defult.stopAnimation()
+    }
+}
+
+
+
+private enum loadDevice {
+    
+    // MARK: - 屏幕宽高、frame
+    static let width: CGFloat = UIScreen.main.bounds.width
+    static let height: CGFloat = UIScreen.main.bounds.height
+    static let frame: CGRect = UIScreen.main.bounds
+    
+    // MARK: - 屏幕16:9比例系数下的宽高
+    static let width16_9: CGFloat = loadDevice.height * 9.0 / 16.0
+    static let height16_9: CGFloat = loadDevice.width * 16.0 / 9.0
+    
+    // MARK: - 关于刘海屏幕适配
+    static let tabbarHeight: CGFloat = loadDevice.aboveiPhoneX ? 83 : 49
+    static let homeHeight: CGFloat = loadDevice.aboveiPhoneX ? 34 : 0
+    static let statusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
+    
+    // MARK: - 设备类型
+    static let isPhone: Bool = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone)
+    static let isPad: Bool = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad)
+    static let aboveiPhoneX: Bool = (Float(String(format: "%.2f", 9.0 / 19.5)) == Float(String(format: "%.2f", loadDevice.width / loadDevice.height)))
+}
+
+private let load_HeightUnit: CGFloat = loadDevice.isPad ? loadDevice.height / 1024.0 : ( loadDevice.aboveiPhoneX ? loadDevice.height16_9 / 667.0 : loadDevice.height / 667.0 )
+
+private func load_Font(_ font: CGFloat) -> UIFont {
+    return UIFont.systemFont(ofSize: font * load_HeightUnit)
+}
+
+private func load_Color(_ red: CGFloat, _ green: CGFloat, _ blue: CGFloat, _ alpha: CGFloat) -> UIColor {
+    return UIColor.init(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: alpha)
+}
+
+
+private extension Timer {
+    
+    class func supportiOS_10EarlierTimer(_ interval: TimeInterval, repeats: Bool, block: @escaping (_ timer: Timer) -> Void) -> Timer {
+        
+        if #available(iOS 10.0, *) {
+            return Timer.init(timeInterval: interval, repeats: repeats, block: block)
+        } else {
+            return Timer.init(timeInterval: interval, target: self, selector: #selector(runTimer(_:)), userInfo: block, repeats: repeats)
+        }
+    }
+    
+    @objc private class func runTimer(_ timer: Timer) -> Void {
+        
+        guard let block: ((Timer) -> Void) = timer.userInfo as? ((Timer) -> Void) else { return }
+        
+        block(timer)
     }
 }

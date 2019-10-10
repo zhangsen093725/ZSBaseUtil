@@ -75,7 +75,7 @@ import AVKit
     private func reloadStartTimer() {
         guard timer == nil else { return }
         
-        timer = Timer.zs_supportiOS_10EarlierTimer(1, repeats: true, block: { [unowned self] (timer) in
+        timer = Timer.supportiOS_10EarlierTimer(1, repeats: true, block: { [unowned self] (timer) in
             
             if Int(self.reloadTime) == self.currentReloadCount {
                 self.play()
@@ -279,7 +279,8 @@ import AVKit
         var playUrl: URL? = url
         
         if playUrl == nil {
-            playUrl = urlString!.zs_isValidUrl ? URL(string: urlString!) : URL(fileURLWithPath: urlString!)
+            let predcate: NSPredicate = NSPredicate(format: "SELF MATCHES%@", #"http[s]{0,1}://[^\s]*"#)
+            playUrl = !predcate.evaluate(with: urlString) ? URL(string: urlString!) : URL(fileURLWithPath: urlString!)
         }
         
         guard playUrl != nil else { return }
@@ -341,7 +342,7 @@ import AVKit
 
 private extension Timer {
     
-    class func zs_supportiOS_10EarlierTimer(_ interval: TimeInterval, repeats: Bool, block: @escaping (_ timer: Timer) -> Void) -> Timer {
+    class func supportiOS_10EarlierTimer(_ interval: TimeInterval, repeats: Bool, block: @escaping (_ timer: Timer) -> Void) -> Timer {
         
         if #available(iOS 10.0, *) {
             return Timer.init(timeInterval: interval, repeats: repeats, block: block)
@@ -355,16 +356,5 @@ private extension Timer {
         guard let block: ((Timer) -> Void) = timer.userInfo as? ((Timer) -> Void) else { return }
         
         block(timer)
-    }
-}
-
-
-
-private extension String {
-    var zs_isValidUrl: Bool {
-        get {
-            let predcate: NSPredicate = NSPredicate(format: "SELF MATCHES%@", #"http[s]{0,1}://[^\s]*"#)
-            return predcate.evaluate(with: self)
-        }
     }
 }
