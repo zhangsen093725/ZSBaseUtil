@@ -8,11 +8,11 @@
 
 import WebKit
 
-@objc protocol ZSWebJSToolDelegate {
+@objc public protocol ZSWebJSToolDelegate {
     func zs_webViewJavaScriptFunction(_ function: String, params: Any?)
 }
 
-@objcMembers class ZSWebJSTool: NSObject, WKScriptMessageHandler {
+@objcMembers public class ZSWebJSTool: NSObject, WKScriptMessageHandler {
     
     public class func evaluateJavaScriptFunction(_ function: String, webView: WKWebView, params: String) {
         
