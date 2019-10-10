@@ -1,7 +1,7 @@
 use_frameworks!
 
 target 'ZSBaseUtil_Example' do
-  pod 'ZSBaseUtil', :path => '../'
+  pod 'ZSBaseUtil/All', :path => '../'
 
   target 'ZSBaseUtil_Tests' do
     inherit! :search_paths

@@ -1,18 +1,16 @@
 PODS:
-  - ZSBaseUtil (0.2.2):
-    - ZSBaseUtil/Defult (= 0.2.2)
-  - ZSBaseUtil/Defult (0.2.2)
+  - ZSBaseUtil/All (0.2.41)
 
 DEPENDENCIES:
-  - ZSBaseUtil (from `../`)
+  - ZSBaseUtil/All (from `../`)
 
 EXTERNAL SOURCES:
   ZSBaseUtil:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ZSBaseUtil: 3b2c3fcd097c319297087611682a1d5f119eccf0
+  ZSBaseUtil: d94119c7ae524b60c18f3fe7b16f1b97be6fbcd0
 
-PODFILE CHECKSUM: 817c5d41ec4a8ff89968fdffef3dff78d2af0a3e
+PODFILE CHECKSUM: b2b87b9c0f912436087afdd149f145e9eb059d07
 
 COCOAPODS: 1.7.5

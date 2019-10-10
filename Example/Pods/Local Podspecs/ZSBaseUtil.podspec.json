@@ -1,6 +1,6 @@
 {
   "name": "ZSBaseUtil",
-  "version": "0.2.2",
+  "version": "0.2.41",
   "summary": "基础扩展库",
   "description": "项目基础库",
   "homepage": "https://github.com/zhangsen093725/ZSBaseUtil",
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://github.com/zhangsen093725/ZSBaseUtil.git",
-    "tag": "0.2.2"
+    "tag": "0.2.41"
   },
   "swift_versions": "5.0",
-  "default_subspecs": "Defult",
+  "default_subspecs": "Default",
   "platforms": {
     "ios": "8.0"
   },
@@ -26,8 +26,8 @@
       "source_files": "ZSBaseUtil/Classes/**/*"
     },
     {
-      "name": "Defult",
-      "source_files": "ZSBaseUtil/Classes/Defult/**/*"
+      "name": "Default",
+      "source_files": "ZSBaseUtil/Classes/Default/**/*"
     },
     {
       "name": "Codable",
