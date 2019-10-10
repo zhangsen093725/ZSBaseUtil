@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ZSBaseUtil'
-  s.version          = '0.2.0'
+  s.version          = '0.2.3'
   s.summary          = '基础扩展库'
 
 # This description is used to generate tags and improve search results.
@@ -28,14 +28,14 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/zhangsen093725/ZSBaseUtil.git', :tag => s.version.to_s }
   s.swift_version    = '5.0'
   
-  s.default_subspecs = 'Defult'
+  s.default_subspecs = 'Default'
 
     s.subspec 'All' do |a|
         a.source_files = 'ZSBaseUtil/Classes/**/*'
     end
 
-   s.subspec 'Defult' do |d|
-       d.source_files = 'ZSBaseUtil/Classes/Defult/**/*'
+   s.subspec 'Default' do |d|
+       d.source_files = 'ZSBaseUtil/Classes/Default/**/*'
    end
 
    s.subspec 'Codable' do |c|
