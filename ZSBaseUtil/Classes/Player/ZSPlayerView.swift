@@ -347,11 +347,11 @@ private extension Timer {
         if #available(iOS 10.0, *) {
             return Timer.init(timeInterval: interval, repeats: repeats, block: block)
         } else {
-            return Timer.init(timeInterval: interval, target: self, selector: #selector(runTimer(_:)), userInfo: block, repeats: repeats)
+            return Timer.init(timeInterval: interval, target: self, selector: #selector(playerRunTimer(_:)), userInfo: block, repeats: repeats)
         }
     }
     
-    @objc private class func runTimer(_ timer: Timer) -> Void {
+    @objc private class func playerRunTimer(_ timer: Timer) -> Void {
         
         guard let block: ((Timer) -> Void) = timer.userInfo as? ((Timer) -> Void) else { return }
         
