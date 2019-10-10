@@ -9,7 +9,7 @@
 import WebKit
 
 @objc public protocol ZSWebJSToolDelegate {
-    func zs_webViewJavaScriptFunction(_ function: String, params: Any?)
+    func zs_userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage)
 }
 
 @objcMembers public class ZSWebJSTool: NSObject, WKScriptMessageHandler {
@@ -47,7 +47,7 @@ import WebKit
     }
     
 
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        
+    public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        delegate?.zs_userContentController(userContentController, didReceive: message)
     }
 }
