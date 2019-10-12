@@ -75,7 +75,7 @@ import AVKit
     private func reloadStartTimer() {
         guard timer == nil else { return }
         
-        timer = Timer.zs_supportiOS_10EarlierTimer(1, repeats: true, block: { [unowned self] (timer) in
+        timer = Timer.supportiOS_10EarlierTimer(1, repeats: true, block: { [unowned self] (timer) in
             
             if Int(self.reloadTime) == self.currentReloadCount {
                 self.play()
