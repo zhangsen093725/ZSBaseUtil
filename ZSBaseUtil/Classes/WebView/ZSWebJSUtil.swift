@@ -14,7 +14,7 @@ import WebKit
 
 @objcMembers public class ZSWebJSTool: NSObject, WKScriptMessageHandler {
     
-    public class func evaluateJavaScriptFunction(_ function: String, webView: WKWebView, params: String) {
+    public class func evaluateJavaScriptFunction(_ function: String, webView: WKWebView?, params: String) {
         
         webView.evaluateJavaScript(function + "(" + params + ")") { (obj, error) in
             print("-----------evaluateJavaScript Begin-------------")

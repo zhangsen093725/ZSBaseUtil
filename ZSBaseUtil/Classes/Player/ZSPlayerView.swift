@@ -75,7 +75,7 @@ import AVKit
     private func reloadStartTimer() {
         guard timer == nil else { return }
         
-        timer = Timer.supportiOS_10EarlierTimer(1, repeats: true, block: { [unowned self] (timer) in
+        timer = Timer.zs_supportiOS_10EarlierTimer(1, repeats: true, block: { [unowned self] (timer) in
             
             if Int(self.reloadTime) == self.currentReloadCount {
                 self.play()
@@ -125,26 +125,15 @@ import AVKit
     
     private func addNotification() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(movieToEnd(notification:)), name: .AVPlayerItemDidPlayToEndTime, object: player)
-        NotificationCenter.default.addObserver(self, selector: #selector(movieJumped(notification:)), name: .AVPlayerItemTimeJumped, object: player)
-        NotificationCenter.default.addObserver(self, selector: #selector(movieStalle(notification:)), name: .AVPlayerItemPlaybackStalled, object: player)
-        NotificationCenter.default.addObserver(self, selector: #selector(enterBackground(notification:)), name: UIApplication.didEnterBackgroundNotification, object: player)
-        NotificationCenter.default.addObserver(self, selector: #selector(enterForeground(notification:)), name: UIApplication.willEnterForegroundNotification, object: player)
-    }
-    
-    private func isPlayerEqual(_ object: Any?) -> Bool {
-        
-        guard object != nil else { return false }
-        guard let noticePlayer: AVPlayer = object as? AVPlayer else { return false }
-        guard noticePlayer === player else { return false }
-        
-        return true
+        NotificationCenter.default.addObserver(self, selector: #selector(movieToEnd(notification:)), name: .AVPlayerItemDidPlayToEndTime, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(movieJumped(notification:)), name: .AVPlayerItemTimeJumped, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(movieStalle(notification:)), name: .AVPlayerItemPlaybackStalled, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(enterBackground(notification:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(enterForeground(notification:)), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     // MARK: - 通知#selector方法
     @objc private func movieToEnd(notification: Notification) {
-        
-        guard isPlayerEqual(notification.object) else { return }
         
         guard av_playerItem?.currentTime().seconds == endTimeValue else { return }
         
@@ -160,16 +149,10 @@ import AVKit
     }
     
     @objc private func movieJumped(notification: Notification) {
-        
-        guard isPlayerEqual(notification.object) else { return }
-        
         delegate?.zs_movieJumped?(self)
     }
     
     @objc private func movieStalle(notification: Notification) {
-        
-        guard isPlayerEqual(notification.object) else { return }
-        
         playStatus = .loading
         delegate?.zs_movieChangePalyStatus?(self, status: playStatus)
         delegate?.zs_movieStalle?(self)
@@ -177,14 +160,10 @@ import AVKit
     
     @objc private func enterBackground(notification: Notification) {
         
-        guard isPlayerEqual(notification.object) else { return }
-        
         delegate?.zs_movieEnterBackground?(self)
     }
     
     @objc private func enterForeground(notification: Notification) {
-        
-        guard isPlayerEqual(notification.object) else { return }
         
         delegate?.zs_movieEnterForeground?(self)
     }
@@ -226,8 +205,6 @@ import AVKit
     }
     
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
-        guard isPlayerEqual(object) else { return }
         
         switch keyPath {
         case "status":
@@ -279,8 +256,7 @@ import AVKit
         var playUrl: URL? = url
         
         if playUrl == nil {
-            let predcate: NSPredicate = NSPredicate(format: "SELF MATCHES%@", #"http[s]{0,1}://[^\s]*"#)
-            playUrl = !predcate.evaluate(with: urlString) ? URL(string: urlString!) : URL(fileURLWithPath: urlString!)
+            playUrl = urlString!.zs_isValidUrl ? URL(string: urlString!) : URL(fileURLWithPath: urlString!)
         }
         
         guard playUrl != nil else { return }
@@ -342,19 +318,30 @@ import AVKit
 
 private extension Timer {
     
-    class func supportiOS_10EarlierTimer(_ interval: TimeInterval, repeats: Bool, block: @escaping (_ timer: Timer) -> Void) -> Timer {
+    class func zs_supportiOS_10EarlierTimer(_ interval: TimeInterval, repeats: Bool, block: @escaping (_ timer: Timer) -> Void) -> Timer {
         
         if #available(iOS 10.0, *) {
             return Timer.init(timeInterval: interval, repeats: repeats, block: block)
         } else {
-            return Timer.init(timeInterval: interval, target: self, selector: #selector(playerRunTimer(_:)), userInfo: block, repeats: repeats)
+            return Timer.init(timeInterval: interval, target: self, selector: #selector(runTimer(_:)), userInfo: block, repeats: repeats)
         }
     }
     
-    @objc private class func playerRunTimer(_ timer: Timer) -> Void {
+    @objc private class func runTimer(_ timer: Timer) -> Void {
         
         guard let block: ((Timer) -> Void) = timer.userInfo as? ((Timer) -> Void) else { return }
         
         block(timer)
+    }
+}
+
+
+
+private extension String {
+    var zs_isValidUrl: Bool {
+        get {
+            let predcate: NSPredicate = NSPredicate(format: "SELF MATCHES%@", #"http[s]{0,1}://[^\s]*"#)
+            return predcate.evaluate(with: self)
+        }
     }
 }

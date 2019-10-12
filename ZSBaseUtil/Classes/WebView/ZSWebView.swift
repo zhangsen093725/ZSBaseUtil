@@ -64,6 +64,7 @@ import JavaScriptCore
     
     public var isClearBackgroundColor: Bool = false {
         willSet {
+            backgroundColor = .clear
             webView.isOpaque = !newValue
             webView.backgroundColor = UIColor.clear.withAlphaComponent(0)
         }

@@ -97,7 +97,7 @@ public extension ZSCodable {
 }
 
 
-extension Dictionary {
+public extension Dictionary {
     
     func zs_toJSONString() -> String? {
         
