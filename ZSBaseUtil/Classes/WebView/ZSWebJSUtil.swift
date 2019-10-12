@@ -16,7 +16,7 @@ import WebKit
     
     public class func evaluateJavaScriptFunction(_ function: String, webView: WKWebView?, params: String) {
         
-        webView.evaluateJavaScript(function + "(" + params + ")") { (obj, error) in
+        webView?.evaluateJavaScript(function + "(" + params + ")") { (obj, error) in
             print("-----------evaluateJavaScript Begin-------------")
             print("function: \(function)")
             print("params:  \(params)")

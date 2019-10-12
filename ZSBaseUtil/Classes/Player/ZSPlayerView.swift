@@ -256,7 +256,9 @@ import AVKit
         var playUrl: URL? = url
         
         if playUrl == nil {
-            playUrl = urlString!.zs_isValidUrl ? URL(string: urlString!) : URL(fileURLWithPath: urlString!)
+            
+            let predcate: NSPredicate = NSPredicate(format: "SELF MATCHES%@", #"http[s]{0,1}://[^\s]*"#)
+            playUrl = predcate.evaluate(with: urlString) ? URL(string: urlString!) : URL(fileURLWithPath: urlString!)
         }
         
         guard playUrl != nil else { return }
@@ -318,30 +320,19 @@ import AVKit
 
 private extension Timer {
     
-    class func zs_supportiOS_10EarlierTimer(_ interval: TimeInterval, repeats: Bool, block: @escaping (_ timer: Timer) -> Void) -> Timer {
+    class func supportiOS_10EarlierTimer(_ interval: TimeInterval, repeats: Bool, block: @escaping (_ timer: Timer) -> Void) -> Timer {
         
         if #available(iOS 10.0, *) {
             return Timer.init(timeInterval: interval, repeats: repeats, block: block)
         } else {
-            return Timer.init(timeInterval: interval, target: self, selector: #selector(runTimer(_:)), userInfo: block, repeats: repeats)
+            return Timer.init(timeInterval: interval, target: self, selector: #selector(player_runTimer(_:)), userInfo: block, repeats: repeats)
         }
     }
     
-    @objc private class func runTimer(_ timer: Timer) -> Void {
+    @objc private class func player_runTimer(_ timer: Timer) -> Void {
         
         guard let block: ((Timer) -> Void) = timer.userInfo as? ((Timer) -> Void) else { return }
         
         block(timer)
-    }
-}
-
-
-
-private extension String {
-    var zs_isValidUrl: Bool {
-        get {
-            let predcate: NSPredicate = NSPredicate(format: "SELF MATCHES%@", #"http[s]{0,1}://[^\s]*"#)
-            return predcate.evaluate(with: self)
-        }
     }
 }
