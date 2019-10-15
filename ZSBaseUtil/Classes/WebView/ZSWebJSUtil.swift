@@ -12,6 +12,7 @@ import WebKit
     func zs_userContentController(_ function: String, params: [String: Any])
     func zs_userContentController(_ function: String, content: String)
     func zs_userContentController(_ function: String, number: NSNumber)
+    func zs_userContentController(_ function: String)
     @objc optional func zs_userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage)
 }
 
@@ -81,5 +82,7 @@ import WebKit
             delegate?.zs_userContentController(message.name, content: content)
             return
         }
+        
+        delegate?.zs_userContentController(message.name)
     }
 }
