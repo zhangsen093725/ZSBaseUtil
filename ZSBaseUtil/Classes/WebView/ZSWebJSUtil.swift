@@ -9,7 +9,10 @@
 import WebKit
 
 @objc public protocol ZSWebJSToolDelegate {
-    func zs_userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage)
+    func zs_userContentController(_ function: String, params: [String: Any])
+    func zs_userContentController(_ function: String, content: String)
+    func zs_userContentController(_ function: String, number: NSNumber)
+    @objc optional func zs_userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage)
 }
 
 @objcMembers public class ZSWebJSTool: NSObject, WKScriptMessageHandler {
@@ -48,6 +51,35 @@ import WebKit
     
 
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        delegate?.zs_userContentController(userContentController, didReceive: message)
+        delegate?.zs_userContentController?(userContentController, didReceive: message)
+        
+        print(message.name, message.body)
+        
+        if let params = message.body as? [String: Any] {
+            delegate?.zs_userContentController(message.name, params: params)
+            return
+        }
+        
+        if let number = message.body as? NSNumber {
+            delegate?.zs_userContentController(message.name, number: number)
+            return
+        }
+        
+        if let content = message.body as? String {
+            
+            if let jsonData: Data = content.data(using: .utf8) {
+                
+                if let dict = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers) {
+                    
+                    if let params = dict as? [String : Any] {
+                        delegate?.zs_userContentController(message.name, params: params)
+                        return
+                    }
+                }
+            }
+            
+            delegate?.zs_userContentController(message.name, content: content)
+            return
+        }
     }
 }
