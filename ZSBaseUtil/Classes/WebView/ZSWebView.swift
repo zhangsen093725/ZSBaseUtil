@@ -75,7 +75,6 @@ import JavaScriptCore
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        ZSSecureTextEntryCash.load()
     }
     
     required init?(coder: NSCoder) {
