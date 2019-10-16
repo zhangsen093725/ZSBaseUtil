@@ -1,6 +1,6 @@
 {
   "name": "ZSBaseUtil",
-  "version": "0.3.1",
+  "version": "0.2.8",
   "summary": "基础扩展库",
   "description": "项目基础库",
   "homepage": "https://github.com/zhangsen093725/ZSBaseUtil",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/zhangsen093725/ZSBaseUtil.git",
-    "tag": "0.3.1"
+    "tag": "0.2.8"
   },
   "swift_versions": "5.0",
   "default_subspecs": "Default",

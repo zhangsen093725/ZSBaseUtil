@@ -7,24 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C22800A5812377081DE5D78063A4738 /* ZSPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3B6B7DBA36FEA9727E4EB2CCA5F681 /* ZSPlayerView.swift */; };
-		0F76394F8D86B059E46A7349DE48F6C0 /* ZSLoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4824C3BCEE18ADAEB9E510195A5E6F /* ZSLoadView.swift */; };
+		0B7C876135AF7B8C949AFFFD8A45692D /* ZSBase+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A55692C0D77EC1C33CBE672CBE4BB8E /* ZSBase+Ext.swift */; };
+		1BA84B375670E7D3F0BBF98BDE4BC134 /* ZSNoticeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357CA2A992D0917187BE0FAA86DFFBF /* ZSNoticeManager.swift */; };
 		1F0673A79D781B526F1FF1CB1FE5653D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		206DF82D80B9CBD281280AFE5868B00B /* ZSWebJSUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71BCC22C9690D08428D750F03C4A934 /* ZSWebJSUtil.swift */; };
 		27758AFA1D957C97FC09BCAAE0ECF71A /* Pods-ZSBaseUtil_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7F91982E1773D3B236FB6A7A7B0261 /* Pods-ZSBaseUtil_Tests-dummy.m */; };
 		2A9D7C4FDE17685F797CB1F0ECFD114E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		2B3777227114C974393D8F1EFD262CBF /* ZSNoticeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A20353B7B10D8B76EAE94BA2F75EE0 /* ZSNoticeManager.swift */; };
-		377DB7FE5A6B361DA2DDB6CD301160A2 /* ZSBaseUtil-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E8BA75A96F88771FE8040B4D2B5968 /* ZSBaseUtil-dummy.m */; };
-		42C869CE1B356C6D9CF67BFC127D3FC6 /* ZSWebJSUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398218438E2F97D01D7B43E21240B060 /* ZSWebJSUtil.swift */; };
-		478F81E54B1A69BC899B000BA5945ACE /* ZSCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36562807CD9E5B348A5CD401C02198B8 /* ZSCodable.swift */; };
-		5D2BBE5E17EEA49FB1AFC67D8C20A1B3 /* ZSToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B808926E3F989A9D9F6F551B69C20 /* ZSToastView.swift */; };
+		36AACCCE83D769E6DB5D1ECED19AC1A6 /* ZSPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5B87AF82F21F62C0DE5EB0D7CBE858 /* ZSPlayerView.swift */; };
+		3F5F6F0356DD6C6EA5BF1378413DEC18 /* ZSProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3A6807835AD75192E46B8394445175 /* ZSProfile.swift */; };
+		52A85CFF2356AC590062DF43 /* ZSWindowTranslate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A85CFE2356AC590062DF43 /* ZSWindowTranslate.swift */; };
+		5E3022ABE6F3AA44B54AD847F08CC038 /* ZSLoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17A103224DC399BB2375408E8E3CF3A /* ZSLoadView.swift */; };
+		5E692BA7C2D163E777003C2AED3E4DB6 /* ZSToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C82B7017AFC48391DD5C6ABAF3D13D9 /* ZSToastView.swift */; };
 		6350069EB99FB1D8E62868A17D58EBB2 /* Pods-ZSBaseUtil_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0195C0C1491D2A91ADBDCF4E0AB6F43C /* Pods-ZSBaseUtil_Example-dummy.m */; };
-		7DC9BCDDEEA5B78467846C94261D78CB /* ZSUIBaseUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B55657DBC4F76B1ACBB31E5DC4287A /* ZSUIBaseUtil.swift */; };
-		90C3BF632A268F5285091AE1DA10D811 /* ZSProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE59254E8F12C285F8FBB916E0E813ED /* ZSProfile.swift */; };
-		9D2B348150FC6C2A15F4547D7DAC718B /* ZSWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434C4AF7539FDCDDF2AB1597B722EAE3 /* ZSWebView.swift */; };
-		A670A308AA8822DB7D8AA207583C5483 /* ZSBaseUtil-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E49AFFD30D51E71C538505C1F52F0411 /* ZSBaseUtil-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7C25FFD54B994DDDA5015F46D9F68298 /* ZSWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FBB075C42332621225262A48474EEAD /* ZSWebView.swift */; };
+		A670A308AA8822DB7D8AA207583C5483 /* ZSBaseUtil-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 244F931A0456225F8EC94CD06C3B4AB9 /* ZSBaseUtil-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA5B6F10DFB2C5C9F2B69B9849742FC3 /* ZSUIBaseUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7112DF16F7EFE0F5B94A4C7FAA2B8047 /* ZSUIBaseUtil.swift */; };
+		AAAA9B18005BD0DCE0638C578AF5E460 /* ZSBaseUtil-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D64A06BBBF14F505DC86A7A6EC98AF9F /* ZSBaseUtil-dummy.m */; };
 		B3F308964B8CBDFFA0978FDFCD1DDBB1 /* Pods-ZSBaseUtil_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DB4B9C2121DC8118ABB5299C6E6E78F7 /* Pods-ZSBaseUtil_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C0996B04850319C2C77B85D77732D850 /* Pods-ZSBaseUtil_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B6D38284E9EC43AC0DE288A464922E79 /* Pods-ZSBaseUtil_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E53638438F689B1661B91837B5EAC914 /* ZSBase+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663BCD4050B7E029FBEF6526A5F736E0 /* ZSBase+Ext.swift */; };
+		F08E5FCD5DA7A559A78E62A930E947A2 /* ZSCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CA5ED2B8CD7BE8DDBCA92CF41421D2 /* ZSCodable.swift */; };
 		F5D1730BA457643729AC103BC598B58B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,46 +48,47 @@
 
 /* Begin PBXFileReference section */
 		0195C0C1491D2A91ADBDCF4E0AB6F43C /* Pods-ZSBaseUtil_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZSBaseUtil_Example-dummy.m"; sourceTree = "<group>"; };
-		05E8BA75A96F88771FE8040B4D2B5968 /* ZSBaseUtil-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZSBaseUtil-dummy.m"; sourceTree = "<group>"; };
-		0C3B6B7DBA36FEA9727E4EB2CCA5F681 /* ZSPlayerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSPlayerView.swift; sourceTree = "<group>"; };
-		15B55657DBC4F76B1ACBB31E5DC4287A /* ZSUIBaseUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSUIBaseUtil.swift; sourceTree = "<group>"; };
+		0A55692C0D77EC1C33CBE672CBE4BB8E /* ZSBase+Ext.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ZSBase+Ext.swift"; sourceTree = "<group>"; };
 		19881607D43BFAE2C32DBA3AF69AD80B /* Pods-ZSBaseUtil_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ZSBaseUtil_Tests.modulemap"; sourceTree = "<group>"; };
-		1CDBFDE88420C51BE6B5D81DA67C0DF2 /* ZSBaseUtil.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ZSBaseUtil.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		1F23305719D03B0BF0F3A356A0758152 /* ZSBaseUtil-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZSBaseUtil-prefix.pch"; sourceTree = "<group>"; };
+		1FBB075C42332621225262A48474EEAD /* ZSWebView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSWebView.swift; sourceTree = "<group>"; };
 		21D90AF4F420534A31BC4F0AE8DB3FAD /* Pods-ZSBaseUtil_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZSBaseUtil_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		2441FE47787C9BC9FB582B2D86962A12 /* Pods_ZSBaseUtil_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZSBaseUtil_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		25819F1B27A85B0E7E7D6A5AE69F7A84 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		244F931A0456225F8EC94CD06C3B4AB9 /* ZSBaseUtil-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZSBaseUtil-umbrella.h"; sourceTree = "<group>"; };
 		262F003649CFB51BC44F556BEA074648 /* Pods-ZSBaseUtil_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZSBaseUtil_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		27E01C075FF6BAB82D5A0E4F37C9D575 /* Pods-ZSBaseUtil_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZSBaseUtil_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		36562807CD9E5B348A5CD401C02198B8 /* ZSCodable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSCodable.swift; sourceTree = "<group>"; };
-		398218438E2F97D01D7B43E21240B060 /* ZSWebJSUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSWebJSUtil.swift; sourceTree = "<group>"; };
+		3357CA2A992D0917187BE0FAA86DFFBF /* ZSNoticeManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSNoticeManager.swift; sourceTree = "<group>"; };
+		3C82B7017AFC48391DD5C6ABAF3D13D9 /* ZSToastView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSToastView.swift; sourceTree = "<group>"; };
 		3FDAE6A084C72ED8B8FFCD3A099A74A5 /* Pods-ZSBaseUtil_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZSBaseUtil_Example-frameworks.sh"; sourceTree = "<group>"; };
-		434C4AF7539FDCDDF2AB1597B722EAE3 /* ZSWebView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSWebView.swift; sourceTree = "<group>"; };
 		4C4DF7D68D9249443F5627EF84031D20 /* Pods-ZSBaseUtil_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZSBaseUtil_Tests-Info.plist"; sourceTree = "<group>"; };
+		4E5B87AF82F21F62C0DE5EB0D7CBE858 /* ZSPlayerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSPlayerView.swift; sourceTree = "<group>"; };
 		5166CA13890EDD6BE836CA134C83FC19 /* Pods-ZSBaseUtil_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZSBaseUtil_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		663BCD4050B7E029FBEF6526A5F736E0 /* ZSBase+Ext.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ZSBase+Ext.swift"; sourceTree = "<group>"; };
+		52A85CFE2356AC590062DF43 /* ZSWindowTranslate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSWindowTranslate.swift; sourceTree = "<group>"; };
+		58CA5ED2B8CD7BE8DDBCA92CF41421D2 /* ZSCodable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSCodable.swift; sourceTree = "<group>"; };
+		7112DF16F7EFE0F5B94A4C7FAA2B8047 /* ZSUIBaseUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSUIBaseUtil.swift; sourceTree = "<group>"; };
 		73A7E9E8DDC1861FBEF4DFE76673D408 /* Pods_ZSBaseUtil_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZSBaseUtil_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		77A20353B7B10D8B76EAE94BA2F75EE0 /* ZSNoticeManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSNoticeManager.swift; sourceTree = "<group>"; };
+		7F04381425B0B1DA974A3D112DB13A3B /* ZSBaseUtil.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZSBaseUtil.modulemap; sourceTree = "<group>"; };
 		858E30673376B4E42B6A187AF02DF12A /* Pods-ZSBaseUtil_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZSBaseUtil_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		86B5B88E9CCA388616380412AF7EC7DA /* Pods-ZSBaseUtil_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZSBaseUtil_Example.release.xcconfig"; sourceTree = "<group>"; };
-		8B8D97C1FFD69F47BA154CFFBACB1B11 /* ZSBaseUtil.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ZSBaseUtil.modulemap; sourceTree = "<group>"; };
-		993BD1C9AFCC7F09F3C9E5601F072084 /* ZSBaseUtil.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZSBaseUtil.xcconfig; sourceTree = "<group>"; };
+		96CE9697A5610F75ACC2E37511C65343 /* ZSBaseUtil.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ZSBaseUtil.xcconfig; sourceTree = "<group>"; };
 		9B144440C318367D3B41EE6D6B12CB65 /* Pods-ZSBaseUtil_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ZSBaseUtil_Example.modulemap"; sourceTree = "<group>"; };
-		9D4824C3BCEE18ADAEB9E510195A5E6F /* ZSLoadView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSLoadView.swift; sourceTree = "<group>"; };
+		9CA7993A000C3519A4CD035A5ED79BCD /* ZSBaseUtil-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZSBaseUtil-prefix.pch"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A0FC48C1A991F37A7CEBA115F9EE2CDB /* Pods-ZSBaseUtil_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZSBaseUtil_Example-Info.plist"; sourceTree = "<group>"; };
-		AC5435957B83E1408AAE169D65AFFD5B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		AA67D16C70385678393FD21839646C56 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		B17A103224DC399BB2375408E8E3CF3A /* ZSLoadView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSLoadView.swift; sourceTree = "<group>"; };
 		B6D38284E9EC43AC0DE288A464922E79 /* Pods-ZSBaseUtil_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ZSBaseUtil_Tests-umbrella.h"; sourceTree = "<group>"; };
-		CA3AF4497B22E12CCB988D7DB60B2368 /* ZSBaseUtil-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ZSBaseUtil-Info.plist"; sourceTree = "<group>"; };
-		CE59254E8F12C285F8FBB916E0E813ED /* ZSProfile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSProfile.swift; sourceTree = "<group>"; };
+		C59B8C706DA744E27C2F039ABEDC157F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C71BCC22C9690D08428D750F03C4A934 /* ZSWebJSUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSWebJSUtil.swift; sourceTree = "<group>"; };
+		CA3A6807835AD75192E46B8394445175 /* ZSProfile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSProfile.swift; sourceTree = "<group>"; };
 		CEA1D273C3D791B8526A611381C8E441 /* Pods-ZSBaseUtil_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZSBaseUtil_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		CFACFA2DDA3296B4D4AFFE00F0E566E5 /* ZSBaseUtil.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZSBaseUtil.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFB0BF072002731A93E63142D135F2DB /* ZSBaseUtil.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ZSBaseUtil.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D64A06BBBF14F505DC86A7A6EC98AF9F /* ZSBaseUtil-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ZSBaseUtil-dummy.m"; sourceTree = "<group>"; };
 		DA7F91982E1773D3B236FB6A7A7B0261 /* Pods-ZSBaseUtil_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZSBaseUtil_Tests-dummy.m"; sourceTree = "<group>"; };
 		DB4B9C2121DC8118ABB5299C6E6E78F7 /* Pods-ZSBaseUtil_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ZSBaseUtil_Example-umbrella.h"; sourceTree = "<group>"; };
-		E49AFFD30D51E71C538505C1F52F0411 /* ZSBaseUtil-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZSBaseUtil-umbrella.h"; sourceTree = "<group>"; };
 		E5E08AACC009EB2A4ECAE410F247D435 /* Pods-ZSBaseUtil_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZSBaseUtil_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		F20B808926E3F989A9D9F6F551B69C20 /* ZSToastView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ZSToastView.swift; sourceTree = "<group>"; };
+		F0BEDFED1A67DC1AFFD91069301B29A1 /* ZSBaseUtil-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ZSBaseUtil-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,23 +119,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		17E53C785CB95CF927BECA343DB21A40 /* Codable */ = {
+		0B59EC77E4FB2EC42ED60BA0320DA17C /* All */ = {
 			isa = PBXGroup;
 			children = (
-				36562807CD9E5B348A5CD401C02198B8 /* ZSCodable.swift */,
+				16A22D91C410DF1715790102BD8A5E63 /* Codable */,
+				F7E20ED7D4D006D0B0A825B7A5861041 /* Default */,
+				F00C8CF68D479FC4A4FCA9A8720443A7 /* Notice */,
+				205D6D0005BF0B724E1D2FB2CDF330F8 /* Player */,
+				9E252588B75F69F2445739CDA0166660 /* Toast */,
+				B02E537442F6BAD27AB77081504F97D8 /* ViewAnimation */,
+				BEACA91C9EC46F8ACB743B4CB0C06FCE /* WebView */,
+			);
+			name = All;
+			sourceTree = "<group>";
+		};
+		11B35A5E521C128BFB221A8B5D9198AB /* Load */ = {
+			isa = PBXGroup;
+			children = (
+				B17A103224DC399BB2375408E8E3CF3A /* ZSLoadView.swift */,
+			);
+			path = Load;
+			sourceTree = "<group>";
+		};
+		16A22D91C410DF1715790102BD8A5E63 /* Codable */ = {
+			isa = PBXGroup;
+			children = (
+				58CA5ED2B8CD7BE8DDBCA92CF41421D2 /* ZSCodable.swift */,
 			);
 			name = Codable;
 			path = ZSBaseUtil/Classes/Codable;
 			sourceTree = "<group>";
 		};
-		1A53E433F5EB92CBFBD0195A0F4FFDA8 /* WebView */ = {
+		205D6D0005BF0B724E1D2FB2CDF330F8 /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				398218438E2F97D01D7B43E21240B060 /* ZSWebJSUtil.swift */,
-				434C4AF7539FDCDDF2AB1597B722EAE3 /* ZSWebView.swift */,
+				4E5B87AF82F21F62C0DE5EB0D7CBE858 /* ZSPlayerView.swift */,
 			);
-			name = WebView;
-			path = ZSBaseUtil/Classes/WebView;
+			name = Player;
+			path = ZSBaseUtil/Classes/Player;
 			sourceTree = "<group>";
 		};
 		2376151E2E1768F70292F4F43A9509F7 /* Pods-ZSBaseUtil_Example */ = {
@@ -151,29 +174,6 @@
 			);
 			name = "Pods-ZSBaseUtil_Example";
 			path = "Target Support Files/Pods-ZSBaseUtil_Example";
-			sourceTree = "<group>";
-		};
-		3711B95E8C1F4C26EF8802DA972A8196 /* Notice */ = {
-			isa = PBXGroup;
-			children = (
-				77A20353B7B10D8B76EAE94BA2F75EE0 /* ZSNoticeManager.swift */,
-			);
-			name = Notice;
-			path = ZSBaseUtil/Classes/Notice;
-			sourceTree = "<group>";
-		};
-		41DF461BE46CE662BD3E47F2C042D48A /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				8B8D97C1FFD69F47BA154CFFBACB1B11 /* ZSBaseUtil.modulemap */,
-				993BD1C9AFCC7F09F3C9E5601F072084 /* ZSBaseUtil.xcconfig */,
-				05E8BA75A96F88771FE8040B4D2B5968 /* ZSBaseUtil-dummy.m */,
-				CA3AF4497B22E12CCB988D7DB60B2368 /* ZSBaseUtil-Info.plist */,
-				1F23305719D03B0BF0F3A356A0758152 /* ZSBaseUtil-prefix.pch */,
-				E49AFFD30D51E71C538505C1F52F0411 /* ZSBaseUtil-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/ZSBaseUtil";
 			sourceTree = "<group>";
 		};
 		4246CC212F7756873B3B1DDB39631E33 /* Products */ = {
@@ -195,77 +195,86 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		7556309F8B1577A8DD3F075E766DE2A6 /* Toast */ = {
+		45A19340A3F0E382E41F0CA8393FA52B /* Toast */ = {
 			isa = PBXGroup;
 			children = (
-				F20B808926E3F989A9D9F6F551B69C20 /* ZSToastView.swift */,
+				3C82B7017AFC48391DD5C6ABAF3D13D9 /* ZSToastView.swift */,
 			);
 			path = Toast;
 			sourceTree = "<group>";
 		};
-		7C4E106119C63ECD89850EFADA0EA200 /* Profiles */ = {
+		5E6B5E917CD2B7C3485C99BEB83B52B5 /* ObjectExt */ = {
 			isa = PBXGroup;
 			children = (
-				CE59254E8F12C285F8FBB916E0E813ED /* ZSProfile.swift */,
+				0A55692C0D77EC1C33CBE672CBE4BB8E /* ZSBase+Ext.swift */,
 			);
-			path = Profiles;
+			path = ObjectExt;
+			sourceTree = "<group>";
+		};
+		783D62EDD33FA564F290C8F05E995326 /* ZSBaseUtil */ = {
+			isa = PBXGroup;
+			children = (
+				0B59EC77E4FB2EC42ED60BA0320DA17C /* All */,
+				7D0C34C6EB5D7E9E98691CA7897F429E /* Pod */,
+				C5230CF4D9AC27E366C32F2C3ED896E5 /* Support Files */,
+			);
+			name = ZSBaseUtil;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		7D0C34C6EB5D7E9E98691CA7897F429E /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				AA67D16C70385678393FD21839646C56 /* LICENSE */,
+				C59B8C706DA744E27C2F039ABEDC157F /* README.md */,
+				CFB0BF072002731A93E63142D135F2DB /* ZSBaseUtil.podspec */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		7D1BC2DA0D2F040C2308697DE40655CA /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BE9FD4B70AEC150CE24C4E7FED182F20 /* ZSBaseUtil */,
+				783D62EDD33FA564F290C8F05E995326 /* ZSBaseUtil */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		868B6ED23F81FC350E3C442A4CDE034E /* Player */ = {
+		838BD068F4E97EE85AD9930A35C0F63C /* UIExt */ = {
 			isa = PBXGroup;
 			children = (
-				0C3B6B7DBA36FEA9727E4EB2CCA5F681 /* ZSPlayerView.swift */,
-			);
-			name = Player;
-			path = ZSBaseUtil/Classes/Player;
-			sourceTree = "<group>";
-		};
-		984670D05CBADCA6858B1A7BAB6DECD1 /* Default */ = {
-			isa = PBXGroup;
-			children = (
-				E795505C21DEA097C566E4D2E01A933F /* ObjectExt */,
-				7C4E106119C63ECD89850EFADA0EA200 /* Profiles */,
-				A75170D706887B627047BF05B213CE49 /* UIExt */,
-			);
-			name = Default;
-			path = ZSBaseUtil/Classes/Default;
-			sourceTree = "<group>";
-		};
-		A632C8043DE45FBD9D1F547BE7BD2EB3 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				25819F1B27A85B0E7E7D6A5AE69F7A84 /* LICENSE */,
-				AC5435957B83E1408AAE169D65AFFD5B /* README.md */,
-				1CDBFDE88420C51BE6B5D81DA67C0DF2 /* ZSBaseUtil.podspec */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		A75170D706887B627047BF05B213CE49 /* UIExt */ = {
-			isa = PBXGroup;
-			children = (
-				15B55657DBC4F76B1ACBB31E5DC4287A /* ZSUIBaseUtil.swift */,
+				7112DF16F7EFE0F5B94A4C7FAA2B8047 /* ZSUIBaseUtil.swift */,
 			);
 			path = UIExt;
 			sourceTree = "<group>";
 		};
-		BE9FD4B70AEC150CE24C4E7FED182F20 /* ZSBaseUtil */ = {
+		9E252588B75F69F2445739CDA0166660 /* Toast */ = {
 			isa = PBXGroup;
 			children = (
-				E09F71CBBFEA08A4F5056A94F6DDE917 /* All */,
-				A632C8043DE45FBD9D1F547BE7BD2EB3 /* Pod */,
-				41DF461BE46CE662BD3E47F2C042D48A /* Support Files */,
+				11B35A5E521C128BFB221A8B5D9198AB /* Load */,
+				45A19340A3F0E382E41F0CA8393FA52B /* Toast */,
 			);
-			name = ZSBaseUtil;
-			path = ../..;
+			name = Toast;
+			path = ZSBaseUtil/Classes/Toast;
+			sourceTree = "<group>";
+		};
+		B02E537442F6BAD27AB77081504F97D8 /* ViewAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				52A85CFE2356AC590062DF43 /* ZSWindowTranslate.swift */,
+			);
+			name = ViewAnimation;
+			path = ZSBaseUtil/Classes/ViewAnimation;
+			sourceTree = "<group>";
+		};
+		BEACA91C9EC46F8ACB743B4CB0C06FCE /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				C71BCC22C9690D08428D750F03C4A934 /* ZSWebJSUtil.swift */,
+				1FBB075C42332621225262A48474EEAD /* ZSWebView.swift */,
+			);
+			name = WebView;
+			path = ZSBaseUtil/Classes/WebView;
 			sourceTree = "<group>";
 		};
 		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
@@ -292,6 +301,20 @@
 			path = "Target Support Files/Pods-ZSBaseUtil_Tests";
 			sourceTree = "<group>";
 		};
+		C5230CF4D9AC27E366C32F2C3ED896E5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7F04381425B0B1DA974A3D112DB13A3B /* ZSBaseUtil.modulemap */,
+				96CE9697A5610F75ACC2E37511C65343 /* ZSBaseUtil.xcconfig */,
+				D64A06BBBF14F505DC86A7A6EC98AF9F /* ZSBaseUtil-dummy.m */,
+				F0BEDFED1A67DC1AFFD91069301B29A1 /* ZSBaseUtil-Info.plist */,
+				9CA7993A000C3519A4CD035A5ED79BCD /* ZSBaseUtil-prefix.pch */,
+				244F931A0456225F8EC94CD06C3B4AB9 /* ZSBaseUtil-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/ZSBaseUtil";
+			sourceTree = "<group>";
+		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
@@ -311,43 +334,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D60588B236F3365FF6A4A52FEAE2A7CC /* Toast */ = {
+		DC311991386BA7FC01DA6B97CCEF447F /* Profiles */ = {
 			isa = PBXGroup;
 			children = (
-				E10E89248CBEC0DFD8770396AF961B49 /* Load */,
-				7556309F8B1577A8DD3F075E766DE2A6 /* Toast */,
+				CA3A6807835AD75192E46B8394445175 /* ZSProfile.swift */,
 			);
-			name = Toast;
-			path = ZSBaseUtil/Classes/Toast;
+			path = Profiles;
 			sourceTree = "<group>";
 		};
-		E09F71CBBFEA08A4F5056A94F6DDE917 /* All */ = {
+		F00C8CF68D479FC4A4FCA9A8720443A7 /* Notice */ = {
 			isa = PBXGroup;
 			children = (
-				17E53C785CB95CF927BECA343DB21A40 /* Codable */,
-				984670D05CBADCA6858B1A7BAB6DECD1 /* Default */,
-				3711B95E8C1F4C26EF8802DA972A8196 /* Notice */,
-				868B6ED23F81FC350E3C442A4CDE034E /* Player */,
-				D60588B236F3365FF6A4A52FEAE2A7CC /* Toast */,
-				1A53E433F5EB92CBFBD0195A0F4FFDA8 /* WebView */,
+				3357CA2A992D0917187BE0FAA86DFFBF /* ZSNoticeManager.swift */,
 			);
-			name = All;
+			name = Notice;
+			path = ZSBaseUtil/Classes/Notice;
 			sourceTree = "<group>";
 		};
-		E10E89248CBEC0DFD8770396AF961B49 /* Load */ = {
+		F7E20ED7D4D006D0B0A825B7A5861041 /* Default */ = {
 			isa = PBXGroup;
 			children = (
-				9D4824C3BCEE18ADAEB9E510195A5E6F /* ZSLoadView.swift */,
+				5E6B5E917CD2B7C3485C99BEB83B52B5 /* ObjectExt */,
+				DC311991386BA7FC01DA6B97CCEF447F /* Profiles */,
+				838BD068F4E97EE85AD9930A35C0F63C /* UIExt */,
 			);
-			path = Load;
-			sourceTree = "<group>";
-		};
-		E795505C21DEA097C566E4D2E01A933F /* ObjectExt */ = {
-			isa = PBXGroup;
-			children = (
-				663BCD4050B7E029FBEF6526A5F736E0 /* ZSBase+Ext.swift */,
-			);
-			path = ObjectExt;
+			name = Default;
+			path = ZSBaseUtil/Classes/Default;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,7 +416,7 @@
 			buildConfigurationList = C244BC36804BB31B435A9AE1ACD60200 /* Build configuration list for PBXNativeTarget "ZSBaseUtil" */;
 			buildPhases = (
 				22FEC07B7549AF82F6AC126A8ACB41F6 /* Headers */,
-				92628B6FEAAA9E2DE9BC9FBA0BF6AD99 /* Sources */,
+				9FF79F482C82ACFF39E57C1065F9883B /* Sources */,
 				89B534F625508F7B59198F175FD7AB61 /* Frameworks */,
 				249F429C54DFAAA3DF3D08CA258A6B2D /* Resources */,
 			);
@@ -444,6 +456,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
+				TargetAttributes = {
+					9844759246A8E01DDEA940D51471DCC5 = {
+						LastSwiftMigration = 1110;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -501,25 +518,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52A85CFF2356AC590062DF43 /* ZSWindowTranslate.swift in Sources */,
 				6350069EB99FB1D8E62868A17D58EBB2 /* Pods-ZSBaseUtil_Example-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		92628B6FEAAA9E2DE9BC9FBA0BF6AD99 /* Sources */ = {
+		9FF79F482C82ACFF39E57C1065F9883B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E53638438F689B1661B91837B5EAC914 /* ZSBase+Ext.swift in Sources */,
-				377DB7FE5A6B361DA2DDB6CD301160A2 /* ZSBaseUtil-dummy.m in Sources */,
-				478F81E54B1A69BC899B000BA5945ACE /* ZSCodable.swift in Sources */,
-				0F76394F8D86B059E46A7349DE48F6C0 /* ZSLoadView.swift in Sources */,
-				2B3777227114C974393D8F1EFD262CBF /* ZSNoticeManager.swift in Sources */,
-				0C22800A5812377081DE5D78063A4738 /* ZSPlayerView.swift in Sources */,
-				90C3BF632A268F5285091AE1DA10D811 /* ZSProfile.swift in Sources */,
-				5D2BBE5E17EEA49FB1AFC67D8C20A1B3 /* ZSToastView.swift in Sources */,
-				7DC9BCDDEEA5B78467846C94261D78CB /* ZSUIBaseUtil.swift in Sources */,
-				42C869CE1B356C6D9CF67BFC127D3FC6 /* ZSWebJSUtil.swift in Sources */,
-				9D2B348150FC6C2A15F4547D7DAC718B /* ZSWebView.swift in Sources */,
+				0B7C876135AF7B8C949AFFFD8A45692D /* ZSBase+Ext.swift in Sources */,
+				AAAA9B18005BD0DCE0638C578AF5E460 /* ZSBaseUtil-dummy.m in Sources */,
+				F08E5FCD5DA7A559A78E62A930E947A2 /* ZSCodable.swift in Sources */,
+				5E3022ABE6F3AA44B54AD847F08CC038 /* ZSLoadView.swift in Sources */,
+				1BA84B375670E7D3F0BBF98BDE4BC134 /* ZSNoticeManager.swift in Sources */,
+				36AACCCE83D769E6DB5D1ECED19AC1A6 /* ZSPlayerView.swift in Sources */,
+				3F5F6F0356DD6C6EA5BF1378413DEC18 /* ZSProfile.swift in Sources */,
+				5E692BA7C2D163E777003C2AED3E4DB6 /* ZSToastView.swift in Sources */,
+				AA5B6F10DFB2C5C9F2B69B9849742FC3 /* ZSUIBaseUtil.swift in Sources */,
+				206DF82D80B9CBD281280AFE5868B00B /* ZSWebJSUtil.swift in Sources */,
+				7C25FFD54B994DDDA5015F46D9F68298 /* ZSWebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +564,7 @@
 			baseConfigurationReference = 858E30673376B4E42B6A187AF02DF12A /* Pods-ZSBaseUtil_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -568,6 +587,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -576,7 +597,7 @@
 		};
 		58ADB7D9AD3BF266B8765C26758AA551 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 993BD1C9AFCC7F09F3C9E5601F072084 /* ZSBaseUtil.xcconfig */;
+			baseConfigurationReference = 96CE9697A5610F75ACC2E37511C65343 /* ZSBaseUtil.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -800,6 +821,7 @@
 			baseConfigurationReference = 86B5B88E9CCA388616380412AF7EC7DA /* Pods-ZSBaseUtil_Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -822,6 +844,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -831,7 +854,7 @@
 		};
 		DDDDD8CF7C8561D4C48B20AE8F5D225A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 993BD1C9AFCC7F09F3C9E5601F072084 /* ZSBaseUtil.xcconfig */;
+			baseConfigurationReference = 96CE9697A5610F75ACC2E37511C65343 /* ZSBaseUtil.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
