@@ -52,6 +52,10 @@ import JavaScriptCore
         webView.addGestureRecognizer(longPress)
         webView.scrollView.decelerationRate = .normal
         
+        if #available(iOS 11.0, *) {
+            webView.scrollView.contentInsetAdjustmentBehavior = .never
+        }
+        
         addSubview(webView)
         return webView
     }()
