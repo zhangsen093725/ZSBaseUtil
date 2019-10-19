@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CommonCrypto
 
 // MARK: - Timer扩展 
 @objc public extension Timer {
@@ -87,39 +88,14 @@ import Foundation
 // MARK: - String扩展
 public extension String {
     
-    var zs_isInt: Bool {
-        get {
-            let scan = Scanner(string: self)
-            var val: Int = 0
-            return scan.scanInt(&val) && scan.isAtEnd
+    func zs_positionOf(sub: String, backwards: Bool = false) -> Int {
+        var pos = NSNotFound
+        if let range = range(of:sub, options: backwards ? .backwards : .literal ) {
+            if !range.isEmpty {
+                pos = self.distance(from:startIndex, to:range.lowerBound)
+            }
         }
-    }
-    
-    var zs_isFloat: Bool {
-        get {
-            let scan = Scanner(string: self)
-            var val: Float = 0
-            return scan.scanFloat(&val) && scan.isAtEnd
-        }
-    }
-    
-    var zs_isNumber: Bool {
-        get {
-            return zs_isInt || zs_isFloat
-        }
-    }
-    
-    var zs_isValidUrl: Bool {
-        get {
-            let predcate: NSPredicate = NSPredicate(format: "SELF MATCHES%@", #"http[s]{0,1}://[^\s]*"#)
-            return predcate.evaluate(with: self)
-        }
-    }
-    
-    var zs_url: NSURL? {
-        get {
-            return NSURL(string: self)
-        }
+        return pos
     }
     
     func zs_size(font: UIFont, textMaxSize: CGSize) -> CGSize {
@@ -295,6 +271,133 @@ public extension String {
         default: return plat
         }
     }
+}
+
+
+public extension String {
+    var zs_isInt: Bool {
+        let scan = Scanner(string: self)
+        var val: Int = 0
+        return scan.scanInt(&val) && scan.isAtEnd
+    }
+    
+    var zs_isFloat: Bool {
+        let scan = Scanner(string: self)
+        var val: Float = 0
+        return scan.scanFloat(&val) && scan.isAtEnd
+    }
+    
+    var zs_isNumber: Bool {
+        return zs_isInt || zs_isFloat
+    }
+    
+    var zs_isValidUrl: Bool {
+        let predcate: NSPredicate = NSPredicate(format: "SELF MATCHES%@", #"http[s]{0,1}://[^\s]*"#)
+        return predcate.evaluate(with: self)
+    }
+    
+    var zs_removeWhitespacesAndLineBreak: String {
+        var sub = self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        sub = sub.replacingOccurrences(of: "\n", with: "")
+        sub = sub.replacingOccurrences(of: "\r", with: "")
+        return sub
+    }
+    
+    // TODO: URL处理
+    var zs_url: NSURL? {
+        return NSURL(string: self)
+    }
+    
+    var zs_URLEncoded: String {
+        return addingPercentEncoding(withAllowedCharacters:
+        .urlQueryAllowed) ?? self
+    }
+    
+    var zs_URLDecoded: String {
+        return removingPercentEncoding ?? self
+    }
+    
+    // TODO: 加密处理
+    private var md5Hash: [UInt8] {
+        let data = Data(utf8)
+        return data.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) -> [UInt8] in
+            
+            var hash = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
+            CC_MD5(bytes.baseAddress, CC_LONG(data.count), &hash)
+            return hash
+        }
+    }
+    
+    var zs_md5: String {
+        return md5Hash.map { String(format: "%02x", $0) }.joined()
+    }
+    
+    var zs_MD5: String {
+        return md5Hash.map { String(format: "%02X", $0) }.joined()
+    }
+    
+    var zs_base64Encoded: String {
+        
+        let data = Data(utf8)
+        return data.base64EncodedString(options: .lineLength64Characters)
+    }
+    
+    var zs_base64Decoded: String {
+        
+        guard let data = Data(base64Encoded: self, options: .ignoreUnknownCharacters) else { return self }
+        return String(data: data, encoding: .utf8) ?? self
+    }
+    
+    var zs_hexEncoded: String {
+        let data = Data(utf8)
+        
+        return data.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) -> String in
+
+            return bytes.map { String(format: "%02x", ($0 & 0xff)) }.joined()
+        }
+    }
+    
+    var zs_HEXEncoded: String {
+        let data = Data(utf8)
+        
+        return data.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) -> String in
+
+            return bytes.map { String(format: "%02X", ($0 & 0xff)) }.joined()
+        }
+    }
+    
+    var zs_hexDecoded: String {
+        
+        var raw: String = replacingOccurrences(of: "", with: ",").replacingOccurrences(of: "", with: "，")
+        
+        guard raw.count >= 2 else { return self }
+        
+        if raw.zs_positionOf(sub: "0x") == 0 {
+            raw.remove(at: raw.startIndex)
+        }
+        
+        var startIndex: Index = raw.startIndex
+        var endIndex: Index = raw.index(raw.startIndex, offsetBy: 1)
+        if raw.count % 2 == 0 {
+            endIndex = raw.index(raw.startIndex, offsetBy: 2)
+        }
+        
+        var hexData = Data()
+        
+        for _ in stride(from: 0, to: raw.count, by: 2) {
+
+            let hexSub = String(raw[startIndex..<endIndex])
+            let scan = Scanner(string: hexSub)
+            var val: UInt64 = 0
+            scan.scanHexInt64(&val)
+            hexData.append(Data.init(bytes: &val, count: 1))
+            startIndex = endIndex
+            endIndex = endIndex == raw.endIndex ? raw.endIndex : raw.index(startIndex, offsetBy: 2)
+        }
+        
+        return String(data: hexData, encoding: .utf8) ?? self
+    }
+    
 }
 
 
