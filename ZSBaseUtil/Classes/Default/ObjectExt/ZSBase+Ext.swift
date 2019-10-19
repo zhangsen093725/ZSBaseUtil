@@ -513,3 +513,25 @@ public extension String {
 
 }
 
+
+// MARK: - Dictiony扩展
+public extension Dictionary {
+    
+    var zs_queryURLEncodedString: String {
+        
+        var query: String = ""
+        
+        for (key, value) in self {
+            
+            if let val = value as? String {
+                query = query + "\(key)" + "=" + val.zs_URLEncoded + "&"
+                continue
+            }
+            
+            query = query + "\(key)" + "=" + "\(value)" + "&"
+        }
+        query.remove(at: query.index(before: query.endIndex))
+        return query
+    }
+    
+}
