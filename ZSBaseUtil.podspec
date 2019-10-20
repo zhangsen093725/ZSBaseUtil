@@ -42,6 +42,10 @@ Pod::Spec.new do |s|
         c.source_files = 'ZSBaseUtil/Classes/Codable/**/*'
     end
     
+    s.subspec 'Crypto' do |cc|
+        cc.source_files = 'ZSBaseUtil/Classes/Crypto/**/*'
+    end
+    
     s.subspec 'Notice' do |n|
         n.source_files = 'ZSBaseUtil/Classes/Notice/**/*'
     end
