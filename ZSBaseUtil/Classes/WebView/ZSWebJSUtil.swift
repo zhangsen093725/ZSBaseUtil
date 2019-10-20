@@ -10,6 +10,7 @@ import WebKit
 
 @objc public protocol ZSWebJSToolDelegate {
     func zs_userContentController(_ function: String, params: [String: Any])
+    func zs_userContentController(_ function: String, array: [Any])
     func zs_userContentController(_ function: String, content: String)
     func zs_userContentController(_ function: String, number: NSNumber)
     func zs_userContentController(_ function: String)
@@ -35,7 +36,7 @@ import WebKit
     public func addScriptMessageHandler(_ webView: WKWebView, funcNames: [String]) {
         
         let userContentController = webView.configuration.userContentController
-
+        
         for funcName in funcNames {
             userContentController.add(self, name: funcName)
         }
@@ -50,11 +51,14 @@ import WebKit
         }
     }
     
-
+    
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         delegate?.zs_userContentController?(userContentController, didReceive: message)
         
-        print(message.name, message.body)
+        if let array = message.body as? [Any] {
+            delegate?.zs_userContentController(message.name, array: array)
+            return
+        }
         
         if let params = message.body as? [String: Any] {
             delegate?.zs_userContentController(message.name, params: params)
@@ -68,17 +72,20 @@ import WebKit
         
         if let content = message.body as? String {
             
-            if let jsonData: Data = content.data(using: .utf8) {
+            let data = Data(content.utf8)
+            
+            if let object = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) {
                 
-                if let dict = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers) {
-                    
-                    if let params = dict as? [String : Any] {
-                        delegate?.zs_userContentController(message.name, params: params)
-                        return
-                    }
+                if let params = object as? [String : Any] {
+                    delegate?.zs_userContentController(message.name, params: params)
+                    return
+                }
+                
+                if let array = object as? [Any] {
+                    delegate?.zs_userContentController(message.name, array: array)
+                    return
                 }
             }
-            
             delegate?.zs_userContentController(message.name, content: content)
             return
         }
