@@ -36,7 +36,7 @@ public extension ZSCodable {
     // TODO: 字典转模型
     static func zs_modelFromDict(_ dict: [String : Any]) throws -> Self {
         
-        guard let JSONString = dict.zs_toJSONString() else {
+        guard let JSONString = dict.zs_json else {
             throw ZSCodableError.zs_dictToJsonFail
         }
         
@@ -75,7 +75,7 @@ public extension ZSCodable {
     }
     
     // TODO: 模型转字典
-    func zs_reflectModelToDict() -> [String : Any] {
+    var zs_dictionary: [String : Any] {
         
         let mirro = Mirror(reflecting: self)
         var dict = [String : Any]()
@@ -88,7 +88,7 @@ public extension ZSCodable {
     // TODO: 模型转JSON字符串
     func zs_toJSONString() throws -> String {
         
-        guard let string = self.zs_reflectModelToDict().zs_toJSONString() else {
+        guard let string = self.zs_dictionary.zs_json else {
             throw ZSCodableError.zs_modelToJsonFail
         }
         
@@ -99,7 +99,7 @@ public extension ZSCodable {
 
 public extension Dictionary {
     
-    func zs_toJSONString() -> String? {
+    var zs_json: String? {
         
         guard JSONSerialization.isValidJSONObject(self) else { return nil }
         
@@ -111,7 +111,7 @@ public extension Dictionary {
 
 public extension Array {
     
-    func zs_toJSONString() -> String? {
+    var zs_json: String? {
     
         guard JSONSerialization.isValidJSONObject(self) else { return nil }
         
@@ -122,7 +122,7 @@ public extension Array {
     
     func modelFromJson<T: Decodable>(_ type: [T].Type) throws -> Array<T> {
         
-        guard let JSONString = self.zs_toJSONString() else {
+        guard let JSONString = zs_json else {
             throw ZSCodableError.zs_dictToJsonFail
         }
         
@@ -143,21 +143,37 @@ public extension Array {
 
 public extension String {
     
-    func zs_toDictionary() -> [String : Any]? {
+    var zs_dictionary: [String : Any] {
+        return Data(utf8).zs_dictionary
+    }
+    
+    var zs_array: [Any] {
+        return Data(utf8).zs_array
+    }
+}
+
+
+public extension Data {
+    
+    var zs_dictionary: [String : Any] {
         
-        guard let jsonData: Data = self.data(using: .utf8) else {
+        guard let dict = try? JSONSerialization.jsonObject(with: self, options: .mutableContainers) else {
             
-            return nil
-        }
-        
-        guard let dict = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers) else {
-            
-            return nil
+            return ["":""]
         }
         
         return dict as? [String:Any] ?? ["":""]
     }
     
+    var zs_array: [Any] {
+        
+        guard let dict = try? JSONSerialization.jsonObject(with: self, options: .mutableContainers) else {
+            
+            return []
+        }
+        
+        return dict as? [Any] ?? []
+    }
 }
 
 
