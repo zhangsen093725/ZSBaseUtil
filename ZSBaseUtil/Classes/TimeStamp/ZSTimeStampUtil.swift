@@ -50,7 +50,9 @@ public extension Date {
     static func zs_dateString(format: String = "yyyy年MM月dd日 HH:mm:ss",
                               time stamp: TimeInterval) -> String {
         
-        let date = Date(timeIntervalSince1970: stamp)
+        let needStamp = String(stamp).count == 13 ? TimeInterval(stamp / 1000) : stamp
+        
+        let date = Date(timeIntervalSince1970: needStamp)
         
         let formatter = zs_dataFormatter(format)
         

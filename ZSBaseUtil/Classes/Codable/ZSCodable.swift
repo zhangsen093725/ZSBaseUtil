@@ -143,11 +143,11 @@ public extension Array {
 
 public extension String {
     
-    var zs_dictionary: [String : Any] {
+    var zs_dictionary: [String : Any]? {
         return Data(utf8).zs_dictionary
     }
     
-    var zs_array: [Any] {
+    var zs_array: [Any]? {
         return Data(utf8).zs_array
     }
 }
@@ -155,24 +155,24 @@ public extension String {
 
 public extension Data {
     
-    var zs_dictionary: [String : Any] {
+    var zs_dictionary: [String : Any]? {
         
         guard let dict = try? JSONSerialization.jsonObject(with: self, options: .mutableContainers) else {
             
-            return ["":""]
+            return nil
         }
         
-        return dict as? [String:Any] ?? ["":""]
+        return dict as? [String : Any]
     }
     
-    var zs_array: [Any] {
+    var zs_array: [Any]? {
         
         guard let dict = try? JSONSerialization.jsonObject(with: self, options: .mutableContainers) else {
             
-            return []
+            return nil
         }
         
-        return dict as? [Any] ?? []
+        return dict as? [Any]
     }
 }
 
