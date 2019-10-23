@@ -33,18 +33,15 @@ import Foundation
 @objc public extension NSObject {
     
     var zs_json: String? {
-        get {
-
-            if let string: String = self as? String {
-                return string
-            }
-            
-            do {
-                let data = try JSONSerialization.data(withJSONObject: self, options: [])
-                return String(data: data, encoding: .utf8)
-            } catch {
-                return nil
-            }
+        if let string: String = self as? String {
+            return string
+        }
+        
+        do {
+            let data = try JSONSerialization.data(withJSONObject: self, options: [])
+            return String(data: data, encoding: .utf8)
+        } catch {
+            return nil
         }
     }
     
@@ -129,6 +126,16 @@ public extension String {
         
         return NSAttributedString(string: self, attributes: tempAttribute)
     }
+    
+    // TODO: -根据当前时间转为时间戳
+    func timeToTimeStamp(time: String) -> Double {
+        let dfmatter = DateFormatter()
+        dfmatter.dateFormat="yyyy年MM月dd日 HH:mm:ss"
+        let last = dfmatter.date(from: time)
+        let timeStamp = last?.timeIntervalSince1970
+        return timeStamp!
+    }
+    
     
     static var deviceVersion: String {
         

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'ZSBaseUtil'
-    s.version          = '0.3.5'
+    s.version          = '0.3.6'
     s.summary          = '基础扩展库'
     
     # This description is used to generate tags and improve search results.
@@ -36,6 +36,10 @@ Pod::Spec.new do |s|
     
     s.subspec 'Default' do |d|
         d.source_files = 'ZSBaseUtil/Classes/Default/**/*'
+    end
+    
+    s.subspec 'TimeStamp' do |ts|
+        ts.source_files = 'ZSBaseUtil/Classes/TimeStamp/**/*'
     end
     
     s.subspec 'Codable' do |c|
