@@ -1,6 +1,6 @@
 {
   "name": "ZSBaseUtil",
-  "version": "0.3.2",
+  "version": "0.3.6",
   "summary": "基础扩展库",
   "description": "项目基础库",
   "homepage": "https://github.com/zhangsen093725/ZSBaseUtil",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/zhangsen093725/ZSBaseUtil.git",
-    "tag": "0.3.2"
+    "tag": "0.3.6"
   },
   "swift_versions": "5.0",
   "default_subspecs": "Default",
@@ -30,8 +30,16 @@
       "source_files": "ZSBaseUtil/Classes/Default/**/*"
     },
     {
+      "name": "TimeStamp",
+      "source_files": "ZSBaseUtil/Classes/TimeStamp/**/*"
+    },
+    {
       "name": "Codable",
       "source_files": "ZSBaseUtil/Classes/Codable/**/*"
+    },
+    {
+      "name": "Crypto",
+      "source_files": "ZSBaseUtil/Classes/Crypto/**/*"
     },
     {
       "name": "Notice",

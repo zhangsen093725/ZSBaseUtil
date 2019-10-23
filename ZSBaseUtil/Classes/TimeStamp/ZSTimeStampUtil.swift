@@ -11,7 +11,7 @@ public extension Date {
     
     /// 获取时区为"Asia/Beijing"的DateFormatter
     /// - Parameter format: 格式，默认 "yyyy年MM月dd日 HH:mm:ss"
-    static func zs_DataFormatter(_ format: String = "yyyy年MM月dd日 HH:mm:ss") -> DateFormatter {
+    static func zs_dataFormatter(_ format: String = "yyyy年MM月dd日 HH:mm:ss") -> DateFormatter {
         
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -38,7 +38,7 @@ public extension Date {
         
         let date = Date(timeIntervalSinceNow: time)
         
-        let formatter = zs_DataFormatter(format)
+        let formatter = zs_dataFormatter(format)
         
         return formatter.string(from: date)
     }
@@ -52,7 +52,7 @@ public extension Date {
         
         let date = Date(timeIntervalSince1970: stamp)
         
-        let formatter = zs_DataFormatter(format)
+        let formatter = zs_dataFormatter(format)
         
         return formatter.string(from: date)
     }
@@ -91,5 +91,31 @@ public extension Date {
         }
         
         return zs_dateString(format: format, time: needStamp)
+    }
+}
+
+
+@objc public extension NSDate {
+    
+    class func zs_dataFormatter(_ format: String = "yyyy年MM月dd日 HH:mm:ss") -> DateFormatter {
+        
+        return Date.zs_dataFormatter(format)
+    }
+    
+    class func zs_timeStamp(future time: TimeInterval = 0) -> Any {
+        
+        return Date.zs_timeStamp(future: time)
+    }
+    
+    class func zs_dateString(format: String = "yyyy年MM月dd日 HH:mm:ss",
+                             future time: TimeInterval = 0) -> String {
+        
+        return Date.zs_dateString(format: format, time: time)
+    }
+    
+    class func zs_dateString(format: String = "yyyy年MM月dd日 HH:mm:ss",
+                             time stamp: TimeInterval) -> String {
+        
+        return Date.zs_dateString(format: format, time: stamp)
     }
 }
