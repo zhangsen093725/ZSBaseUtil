@@ -8,7 +8,7 @@
 
 import Foundation
 
-// MARK: - Timer扩展 
+// MARK: - Timer扩展
 @objc public extension Timer {
     
     class func zs_supportiOS_10EarlierTimer(_ interval: TimeInterval, repeats: Bool, block: @escaping (_ timer: Timer) -> Void) -> Timer {
@@ -310,8 +310,8 @@ public extension String {
     }
     
     // TODO: URL处理
-    var zs_url: NSURL? {
-        return NSURL(string: self)
+    var zs_url: URL? {
+        return URL(string: self)
     }
     
     var zs_URLEncoded: String {
