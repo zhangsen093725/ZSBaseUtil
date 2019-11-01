@@ -120,7 +120,7 @@ public extension Array {
         return String(data: newData, encoding: .utf8)
     }
     
-    func modelFromJson<T: Decodable>(_ type: [T].Type) throws -> Array<T> {
+    func zs_modelFromJson<T: Decodable>(_ type: [T].Type) throws -> Array<T> {
         
         guard let JSONString = zs_json else {
             throw ZSCodableError.zs_dictToJsonFail
