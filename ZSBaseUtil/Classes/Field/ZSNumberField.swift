@@ -152,7 +152,7 @@ open class ZSNumberField: UIView, UITextFieldDelegate {
     private struct style {
         
         struct input {
-            static let color: UIColor = UIColor.systemBlue.filed_dark(UIColor(red: 82 / 255, green: 82 / 255, blue: 82 / 255, alpha: 1))
+            static let color: UIColor = UIColor.white.filed_dark(UIColor(red: 82 / 255, green: 82 / 255, blue: 82 / 255, alpha: 1))
         }
         
         struct field {
