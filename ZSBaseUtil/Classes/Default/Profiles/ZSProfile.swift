@@ -37,11 +37,11 @@ public let KHeightUnit: CGFloat = KDevice.isPad ? KDevice.height / 1024.0 : ( KD
 
 
 // MARK: - 子试图16:9比例系数下的宽高
-public func KSubViewWidth16_9(_ subViewHeight: CGFloat) -> CGFloat {
+public func KSubViewWidth(_ subViewHeight: CGFloat) -> CGFloat {
     return KDevice.isPad ? subViewHeight * 3.0 / 4.0 : subViewHeight * 9.0 / 16.0
 }
 
-public func KSubViewHeight16_9(_ subviewWidth: CGFloat) -> CGFloat {
+public func KSubViewHeight(_ subviewWidth: CGFloat) -> CGFloat {
     return KDevice.isPad ? subviewWidth * 4.0 / 3.0 : subviewWidth * 16.0 / 9.0
 }
 
