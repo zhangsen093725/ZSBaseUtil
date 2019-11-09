@@ -246,9 +246,9 @@ open class ZSPhoneField: ZSNumberField {
                 value.insert(" ", at: value.index(value.startIndex, offsetBy: 8))
             }
             
-            if value.count > 11 {
+            if value.count > 13 {
                 
-                let endIndex = value.index(value.startIndex, offsetBy: 11)
+                let endIndex = value.index(value.startIndex, offsetBy: 13)
                 
                 value = String(value[..<endIndex])
             }
@@ -256,7 +256,7 @@ open class ZSPhoneField: ZSNumberField {
             textField.text = value
         }
         get {
-            return textField.text?.replacingOccurrences(of: "", with: " ")
+            return textField.text?.replacingOccurrences(of: " ", with: "")
         }
     }
     
@@ -270,38 +270,60 @@ open class ZSPhoneField: ZSNumberField {
             return false
         }
         
+        var text: String = String(textField.text ?? "")
+        
         if string == "" {
+            
+            guard let spaceRange = Range(range, in: text) else { return true }
 
-            guard var text = textField.text else { return false }
-            
-            guard let subRange = Range(NSRange(location: range.location - 1, length: range.length + 1), in: text) else { return true}
-            
-            if String(text[subRange]) == " " {
+            if String(text[spaceRange]) == " " {
+
+                guard let subRange = Range(NSRange(location: range.location - 1, length: range.length + 1), in: text) else { return true }
+
                 text.removeSubrange(subRange)
                 textField.text = text
+                
+                let start = textField.position(from: textField.beginningOfDocument, offset: range.location - 1)
+                let end = textField.position(from: textField.endOfDocument, offset: range.location - 1 -
+                    text.count)
+                
+                textField.selectedTextRange = textField.textRange(from: start!, to: end!)
+                
                 return false
             }
+
+            guard range.location > 0 else { return true }
+
+            let space = NSRange(location: range.location - 1, length: 1)
+
+            guard let _spaceRange_ = Range(space, in: text) else { return true }
+
+            if String(text[_spaceRange_]) == " " {
+
+                guard let subRange = Range(NSRange(location: range.location - 1, length: range.length + 1), in: text) else { return true }
+
+                text.removeSubrange(subRange)
+                textField.text = text
+                
+                let start = textField.position(from: textField.beginningOfDocument, offset: range.location - 1)
+                let end = textField.position(from: textField.endOfDocument, offset: range.location - 1 -
+                    text.count)
+                
+                textField.selectedTextRange = textField.textRange(from: start!, to: end!)
+                
+                return false
+            }
+
             return true
         }
         
-        var text = String(textField.text ?? "")
-        
-        var replaceString = string
-        
-        if range.location == 2 ||
-            range.location == 7 ||
-            range.location == 12 {
-            
-            replaceString = " " + string
-        }
-
         if let indexRange = Range(range, in: text) {
-            text.replaceSubrange(indexRange, with: replaceString)
+            text.replaceSubrange(indexRange, with: string)
         } else {
-            text.append(replaceString)
+            text.append(string)
         }
-        textField.text = text
-
+        self.text = text.replacingOccurrences(of: " ", with: "")
+        
         return false
     }
 }

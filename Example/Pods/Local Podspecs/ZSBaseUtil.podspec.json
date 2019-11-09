@@ -1,6 +1,6 @@
 {
   "name": "ZSBaseUtil",
-  "version": "0.3.6",
+  "version": "0.3.95",
   "summary": "基础扩展库",
   "description": "项目基础库",
   "homepage": "https://github.com/zhangsen093725/ZSBaseUtil",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/zhangsen093725/ZSBaseUtil.git",
-    "tag": "0.3.6"
+    "tag": "0.3.95"
   },
   "swift_versions": "5.0",
   "default_subspecs": "Default",
@@ -40,6 +40,10 @@
     {
       "name": "Crypto",
       "source_files": "ZSBaseUtil/Classes/Crypto/**/*"
+    },
+    {
+      "name": "Field",
+      "source_files": "ZSBaseUtil/Classes/Field/**/*"
     },
     {
       "name": "Notice",
