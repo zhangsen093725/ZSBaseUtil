@@ -34,9 +34,9 @@ public extension ZSCodable {
     mutating func structCodableFinish() {}
     
     // TODO: 字典转模型
-    static func zs_modelFromDict(_ dict: [String : Any]) throws -> Self {
+    static func zs_modelFromDict(_ dict: [String : Any]?) throws -> Self {
         
-        guard let JSONString = dict.zs_json else {
+        guard let JSONString = dict?.zs_json else {
             throw ZSCodableError.zs_dictToJsonFail
         }
         
@@ -48,9 +48,9 @@ public extension ZSCodable {
     }
     
     // TODO: JSON转模型
-    static func zs_modelFromJSON(_ JSONString: String) throws -> Self {
+    static func zs_modelFromJSON(_ JSONString: String?) throws -> Self {
 
-        guard let jsonData = JSONString.data(using: .utf8) else {
+        guard let jsonData = JSONString?.data(using: .utf8) else {
             throw ZSCodableError.zs_jsonToDataFail
         }
         
@@ -180,6 +180,25 @@ public extension Data {
 
 
 public extension KeyedDecodingContainer {
+    
+    /// 防止Bool类型数据在JSON中是Int的类型
+    func decodeIfPresent(_ type: Bool.Type, forKey key: K) throws -> Bool? {
+        
+        if let value = try? decode(type, forKey: key) {
+            return value
+        }
+        
+        if let value = try? decode(String.self, forKey: key) {
+            return Bool(value)
+        }
+        
+        if let value = try? decode(Int.self, forKey: key) {
+            return value > 0
+        }
+        
+        return nil
+    }
+    
     
     /// 防止Int类型数据在JSON中是String的类型
     func decodeIfPresent(_ type: Int.Type, forKey key: K) throws -> Int? {

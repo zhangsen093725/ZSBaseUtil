@@ -65,20 +65,19 @@ public class ZSPopBaseView: UIView {
         
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = toastColor(21, 23, 35, 1)
-        label.font = toastDevice.isPad ? toastFont(20) : toastFont(16)
+        label.textColor = toastColor(51, 51, 51, 1)
+        label.font = .boldSystemFont(ofSize: (toastDevice.isPad ? 22 : 18) * KHeightUnit)
         label.textAlignment = .center
         backView.addSubview(label)
         return label
     }()
     
     fileprivate var lineLabel: UILabel {
-        get {
-            let label = UILabel()
-            label.backgroundColor = toastColor(239, 239, 239, 1)
-            backView.addSubview(label)
-            return label
-        }
+        
+        let label = UILabel()
+        label.backgroundColor = toastColor(239, 239, 239, 1)
+        backView.addSubview(label)
+        return label
     }
     
     fileprivate var actions: Array<ZSPopAction>? = []
@@ -128,7 +127,7 @@ public class ZSPopBaseView: UIView {
         paraStyle.lineSpacing = msgHeight > msgFont.lineHeight ? lineHeight : 0
         paraStyle.alignment = .center
  
-        tempAttribute?[.foregroundColor] = toastColor(82, 82, 82, 1)
+        tempAttribute?[.foregroundColor] = toastColor(51, 51, 51, 1)
         tempAttribute?[.paragraphStyle] = paraStyle
         return tempAttribute!
     }

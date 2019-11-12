@@ -316,7 +316,7 @@ public extension String {
     
     var zs_URLEncoded: String {
         return addingPercentEncoding(withAllowedCharacters:
-        .urlQueryAllowed) ?? self
+            .urlQueryAllowed) ?? self
     }
     
     var zs_URLDecoded: String {
@@ -385,7 +385,9 @@ public extension String {
 // MARK: - NSAttributedString扩展
 @objc public extension NSAttributedString {
     
-    class func imageAttribute(_ image: UIImage, textFont: UIFont, imageFont: UIFont? = nil) -> NSAttributedString {
+    class func imageAttribute(_ image: UIImage,
+                              textFont: UIFont,
+                              imageFont: UIFont? = nil) -> NSAttributedString {
         
         let attchment = NSTextAttachment()
         attchment.image = image
@@ -393,14 +395,14 @@ public extension String {
         let height = (imageFont == nil ? textFont.lineHeight : imageFont?.lineHeight) ?? 0
         let width = (image.size.width / image.size.height) * height
         let y = (imageFont == nil ? textFont.descender : (textFont.lineHeight - (imageFont?.lineHeight ?? 0)) * 0.5 + textFont.descender)
-    
+        
         attchment.bounds = CGRect(x: 0, y: y, width: width, height: height)
         
         return NSAttributedString(attachment: attchment)
     }
     
     func zs_add(font: UIFont,
-                textMaxSize: CGSize = CGSize.zero,
+                textMaxSize: CGSize = CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT)),
                 attributes: Dictionary<NSAttributedString.Key, Any>? = nil,
                 alignment: NSTextAlignment = .left,
                 lineHeight: CGFloat = 0,
@@ -409,8 +411,17 @@ public extension String {
                 isAutoLineBreak: Bool = false) -> NSAttributedString {
         
         let paraStyle = NSMutableParagraphStyle()
-        paraStyle.lineSpacing = zs_size(textMaxSize: textMaxSize).height > font.lineHeight ? lineHeight : 0
-
+        
+        let textH = zs_size(textMaxSize: textMaxSize).height
+        
+        let isAddLineSpace = textH > font.lineHeight
+        
+        var _lineHeight_ = lineHeight - font.lineHeight
+        
+        _lineHeight_ = _lineHeight_ <= 0 ? lineHeight : _lineHeight_
+        
+        paraStyle.lineSpacing = isAddLineSpace ? _lineHeight_ : 0
+        
         if !isAutoLineBreak {
             paraStyle.lineBreakMode = .byTruncatingTail
         }
@@ -419,14 +430,14 @@ public extension String {
         paraStyle.firstLineHeadIndent = headIndent
         paraStyle.headIndent = headIndent
         paraStyle.tailIndent = tailIndent
-
+        
         guard let mutable: NSMutableAttributedString = self.mutableCopy() as? NSMutableAttributedString else { return self }
         
         guard var tempAttribute = attributes else { return self }
         
         tempAttribute[.font] = font
         tempAttribute[.paragraphStyle] = paraStyle
-
+        
         mutable.addAttributes(tempAttribute, range: NSMakeRange(0, self.length))
         return mutable.copy() as! NSAttributedString
     }
@@ -434,7 +445,7 @@ public extension String {
     func zs_size(textMaxSize: CGSize) -> CGSize {
         return self.boundingRect(with: textMaxSize, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil).size
     }
-
+    
 }
 
 

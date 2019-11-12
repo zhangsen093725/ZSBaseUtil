@@ -263,6 +263,10 @@ open class ZSPhoneField: ZSNumberField {
     // TODO: UITextFieldDelegate
     public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+        let isShouldChange = delegate?.zs_number?(textField: self, shouldChangeCharactersIn: range, replacementString: string)
+        
+        guard isShouldChange == nil else { return isShouldChange! }
+        
         if string == "\n" {
             
             endEditing(true)
