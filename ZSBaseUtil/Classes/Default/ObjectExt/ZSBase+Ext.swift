@@ -316,7 +316,7 @@ public extension String {
     
     var zs_URLEncoded: String {
         return addingPercentEncoding(withAllowedCharacters:
-            .urlQueryAllowed) ?? self
+        .urlQueryAllowed) ?? self
     }
     
     var zs_URLDecoded: String {
