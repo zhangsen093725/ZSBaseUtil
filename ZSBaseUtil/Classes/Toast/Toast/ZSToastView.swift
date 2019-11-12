@@ -66,7 +66,7 @@ public class ZSPopBaseView: UIView {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = toastColor(51, 51, 51, 1)
-        label.font = .boldSystemFont(ofSize: (toastDevice.isPad ? 22 : 18) * KHeightUnit)
+        label.font = .boldSystemFont(ofSize: (toastDevice.isPad ? 22 : 18) * toastHeightUnit)
         label.textAlignment = .center
         backView.addSubview(label)
         return label
