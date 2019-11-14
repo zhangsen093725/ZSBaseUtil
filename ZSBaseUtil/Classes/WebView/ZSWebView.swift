@@ -98,17 +98,28 @@ import JavaScriptCore
     }
     
     // TODO: 加载页面
-    public func load(url: URL) {
-        webView.load(URLRequest(url: url))
+    public func load(url: URL?) {
+        
+        guard let _url_ = url else { return }
+        
+        webView.load(URLRequest(url: _url_))
     }
     
-    public func loadHTMLString(_ string: String, baseURL: URL) {
-        webView.loadHTMLString(string, baseURL: baseURL)
+    public func loadHTMLString(_ string: String?, baseURL: URL?) {
+        
+        guard let _string_ = string else { return }
+        
+        webView.loadHTMLString(_string_, baseURL: baseURL)
     }
     
-    public func loadFileURL(_ url: URL, baseURL: URL) {
+    public func loadFileURL(_ url: URL?, baseURL: URL?) {
+        
+        guard let _url_ = url else { return }
+        
+        guard let _baseURL_ = baseURL else { return }
+        
         if #available(iOS 9.0, *) {
-            webView.loadFileURL(url, allowingReadAccessTo: baseURL)
+            webView.loadFileURL(_url_, allowingReadAccessTo: _baseURL_)
         }
     }
     

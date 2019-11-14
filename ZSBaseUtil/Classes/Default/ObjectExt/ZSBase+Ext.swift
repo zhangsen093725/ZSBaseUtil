@@ -108,7 +108,16 @@ public extension String {
                 isAutoLineBreak: Bool = false) -> NSAttributedString {
         
         let paraStyle = NSMutableParagraphStyle()
-        paraStyle.lineSpacing = zs_size(font: font, textMaxSize: textMaxSize).height > font.lineHeight ? lineHeight : 0
+        
+        let textH = zs_size(font: font, textMaxSize: textMaxSize).height
+        
+        let isAddLineSpace = textH > font.lineHeight
+        
+        var _lineHeight_ = lineHeight - font.lineHeight
+        
+        _lineHeight_ = _lineHeight_ <= 0 ? lineHeight : _lineHeight_
+        
+        paraStyle.lineSpacing = isAddLineSpace ? _lineHeight_ : 0
         
         if !isAutoLineBreak {
             paraStyle.lineBreakMode = .byTruncatingTail
@@ -316,7 +325,7 @@ public extension String {
     
     var zs_URLEncoded: String {
         return addingPercentEncoding(withAllowedCharacters:
-        .urlQueryAllowed) ?? self
+            .urlQueryAllowed) ?? self
     }
     
     var zs_URLDecoded: String {
@@ -329,38 +338,34 @@ public extension String {
 @objc public extension NSString {
     
     var zs_isInt: Bool {
-        get {
-            return String(self).zs_isInt
-        }
+        let scan = Scanner(string: self as String)
+        var val: Int = 0
+        return scan.scanInt(&val) && scan.isAtEnd
     }
     
     var zs_isFloat: Bool {
-        get {
-            return String(self).zs_isFloat
-        }
+        let scan = Scanner(string: self as String)
+        var val: Float = 0
+        return scan.scanFloat(&val) && scan.isAtEnd
     }
     
     var zs_isNumber: Bool {
-        get {
-            return String(self).zs_isNumber
-        }
+        return zs_isInt || zs_isFloat
     }
     
     var zs_isValidUrl: Bool {
-        get {
-            return String(self).zs_isValidUrl
-        }
+        let predcate: NSPredicate = NSPredicate(format: "SELF MATCHES%@", #"http[s]{0,1}://[^\s]*"#)
+        return predcate.evaluate(with: self)
     }
     
     var zs_url: NSURL? {
-        get {
-            return String(self).zs_url
-        }
+        
+        return URL(string: self as String) as NSURL?
     }
     
     func zs_size(font: UIFont, textMaxSize: CGSize) -> CGSize {
         
-        return String(self).zs_size(font: font, textMaxSize: textMaxSize)
+        return self.boundingRect(with: textMaxSize, options: .usesLineFragmentOrigin, attributes: [.font : font], context: nil).size
     }
     
     func zs_add(font: UIFont,
@@ -372,7 +377,33 @@ public extension String {
                 tailIndent: CGFloat = 0,
                 isAutoLineBreak: Bool = false) -> NSAttributedString {
         
-        return String(self).zs_add(font: font, textMaxSize: textMaxSize, attributes: attributes, alignment: alignment, lineHeight: lineHeight, headIndent: headIndent, tailIndent: tailIndent, isAutoLineBreak: isAutoLineBreak)
+        let paraStyle = NSMutableParagraphStyle()
+        
+        let textH = zs_size(font: font, textMaxSize: textMaxSize).height
+        
+        let isAddLineSpace = textH > font.lineHeight
+        
+        var _lineHeight_ = lineHeight - font.lineHeight
+        
+        _lineHeight_ = _lineHeight_ <= 0 ? lineHeight : _lineHeight_
+        
+        paraStyle.lineSpacing = isAddLineSpace ? _lineHeight_ : 0
+        
+        if !isAutoLineBreak {
+            paraStyle.lineBreakMode = .byTruncatingTail
+        }
+        
+        paraStyle.alignment = alignment
+        paraStyle.firstLineHeadIndent = headIndent
+        paraStyle.headIndent = headIndent
+        paraStyle.tailIndent = tailIndent
+        
+        var tempAttribute = attributes
+        
+        tempAttribute?[.font] = font
+        tempAttribute?[.paragraphStyle] = paraStyle
+        
+        return NSAttributedString(string: self as String, attributes: tempAttribute)
     }
     
     class var deviceVersion: String {

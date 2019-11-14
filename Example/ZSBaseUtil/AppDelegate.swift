@@ -13,7 +13,7 @@ import ZSBaseUtil
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
+    var string: NSString = "https://www.baidu.com"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let naviVC = UINavigationController(rootViewController: loginVC)
         window?.rootViewController = naviVC
         window?.makeKeyAndVisible()
+        
+        print(string.zs_url)
+        
         
         return true
     }

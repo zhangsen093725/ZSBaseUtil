@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'ZSBaseUtil'
-    s.version          = '0.3.99'
+    s.version          = '0.4.0'
     s.summary          = '基础扩展库'
     
     # This description is used to generate tags and improve search results.
@@ -34,12 +34,8 @@ Pod::Spec.new do |s|
         a.source_files = 'ZSBaseUtil/Classes/**/*'
     end
     
-    s.subspec 'Default' do |d|
-        d.source_files = 'ZSBaseUtil/Classes/Default/**/*'
-    end
-    
-    s.subspec 'TimeStamp' do |ts|
-        ts.source_files = 'ZSBaseUtil/Classes/TimeStamp/**/*'
+    s.subspec 'Button' do |b|
+        b.source_files = 'ZSBaseUtil/Classes/Button/**/*'
     end
     
     s.subspec 'Codable' do |c|
@@ -50,8 +46,16 @@ Pod::Spec.new do |s|
         cc.source_files = 'ZSBaseUtil/Classes/Crypto/**/*'
     end
     
+    s.subspec 'Default' do |d|
+        d.source_files = 'ZSBaseUtil/Classes/Default/**/*'
+    end
+    
     s.subspec 'Field' do |f|
         f.source_files = 'ZSBaseUtil/Classes/Field/**/*'
+    end
+    
+    s.subspec 'Image' do |i|
+        i.source_files = 'ZSBaseUtil/Classes/Image/**/*'
     end
     
     s.subspec 'Notice' do |n|
@@ -59,7 +63,11 @@ Pod::Spec.new do |s|
     end
     
     s.subspec 'Player' do |p|
-        p.source_files = 'ZSBaseUtil/Classes/Player/**/*'
+           p.source_files = 'ZSBaseUtil/Classes/Player/**/*'
+       end
+    
+    s.subspec 'TimeStamp' do |ts|
+        ts.source_files = 'ZSBaseUtil/Classes/TimeStamp/**/*'
     end
     
     s.subspec 'Toast' do |t|
@@ -75,14 +83,13 @@ Pod::Spec.new do |s|
         end
     end
     
-    s.subspec 'WebView' do |w|
-        w.source_files = 'ZSBaseUtil/Classes/WebView/**/*'
-    end
-    
     s.subspec 'ViewAnimation' do |v|
         v.source_files = 'ZSBaseUtil/Classes/ViewAnimation/**/*'
     end
     
+    s.subspec 'WebView' do |w|
+        w.source_files = 'ZSBaseUtil/Classes/WebView/**/*'
+    end
     
     # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
     

@@ -1,6 +1,6 @@
 {
   "name": "ZSBaseUtil",
-  "version": "0.3.95",
+  "version": "0.3.99",
   "summary": "基础扩展库",
   "description": "项目基础库",
   "homepage": "https://github.com/zhangsen093725/ZSBaseUtil",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/zhangsen093725/ZSBaseUtil.git",
-    "tag": "0.3.95"
+    "tag": "0.3.99"
   },
   "swift_versions": "5.0",
   "default_subspecs": "Default",
@@ -26,12 +26,8 @@
       "source_files": "ZSBaseUtil/Classes/**/*"
     },
     {
-      "name": "Default",
-      "source_files": "ZSBaseUtil/Classes/Default/**/*"
-    },
-    {
-      "name": "TimeStamp",
-      "source_files": "ZSBaseUtil/Classes/TimeStamp/**/*"
+      "name": "Button",
+      "source_files": "ZSBaseUtil/Classes/Button/**/*"
     },
     {
       "name": "Codable",
@@ -42,8 +38,16 @@
       "source_files": "ZSBaseUtil/Classes/Crypto/**/*"
     },
     {
+      "name": "Default",
+      "source_files": "ZSBaseUtil/Classes/Default/**/*"
+    },
+    {
       "name": "Field",
       "source_files": "ZSBaseUtil/Classes/Field/**/*"
+    },
+    {
+      "name": "Image",
+      "source_files": "ZSBaseUtil/Classes/Image/**/*"
     },
     {
       "name": "Notice",
@@ -52,6 +56,10 @@
     {
       "name": "Player",
       "source_files": "ZSBaseUtil/Classes/Player/**/*"
+    },
+    {
+      "name": "TimeStamp",
+      "source_files": "ZSBaseUtil/Classes/TimeStamp/**/*"
     },
     {
       "name": "Toast",
@@ -68,12 +76,12 @@
       ]
     },
     {
-      "name": "WebView",
-      "source_files": "ZSBaseUtil/Classes/WebView/**/*"
-    },
-    {
       "name": "ViewAnimation",
       "source_files": "ZSBaseUtil/Classes/ViewAnimation/**/*"
+    },
+    {
+      "name": "WebView",
+      "source_files": "ZSBaseUtil/Classes/WebView/**/*"
     }
   ],
   "swift_version": "5.0"

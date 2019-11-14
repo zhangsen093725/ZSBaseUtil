@@ -23,11 +23,11 @@ public extension Date {
     
     /// 获取未来时间戳
     /// - Parameter time: 现在时间往后多少秒，默认为0，表示获取当前时间戳
-    static func zs_timeStamp<ResultValue>(future time: TimeInterval = 0) -> ResultValue {
+    static func zs_timeStamp<ResultValue>(future time: TimeInterval = 0) -> ResultValue? {
         
         let date = Date(timeIntervalSinceNow: time)
         
-        return date.timeIntervalSince1970 as! ResultValue
+        return date.timeIntervalSince1970 as? ResultValue
     }
     
     /// 返回未来日期
@@ -65,7 +65,7 @@ public extension Date {
     static func zs_timeQuantum(format: String = "yyyy年MM月dd日 HH:mm:ss",
                                time stamp: TimeInterval) -> String {
         
-        let currentTime: TimeInterval = zs_timeStamp()
+        let currentTime: TimeInterval = zs_timeStamp()!
         let needStamp = String(stamp).count == 13 ? TimeInterval(stamp / 1000) : stamp
         let reduceTime : TimeInterval = currentTime - needStamp
         
@@ -104,7 +104,7 @@ public extension Date {
         return Date.zs_dataFormatter(format)
     }
     
-    class func zs_timeStamp(future time: TimeInterval = 0) -> Any {
+    class func zs_timeStamp(future time: TimeInterval = 0) -> Any? {
         
         return Date.zs_timeStamp(future: time)
     }
