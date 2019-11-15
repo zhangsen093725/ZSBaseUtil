@@ -260,11 +260,43 @@ open class ZSPhoneField: ZSNumberField {
         }
     }
     
+    func shouldDeleteBlank(range: NSRange, fieldString: String) -> Bool {
+    
+        guard let spaceRange = Range(range, in: fieldString) else { return false }
+        
+        if String(fieldString[spaceRange]) == " " {
+            return true
+        }
+        
+        let space = NSRange(location: range.location - 1, length: 1)
+                   
+        guard let _spaceRange_ = Range(space, in: fieldString) else { return false }
+                   
+        if String(fieldString[_spaceRange_]) == " " {
+            return true
+        }
+        
+        return false
+    }
+    
+    func shouldInsertBlank(range: NSRange, fieldString: String) -> Bool {
+        
+        let space = NSRange(location: range.location + range.length, length: 1)
+        
+        guard let spaceRange = Range(space, in: fieldString) else { return false }
+        
+        if String(fieldString[spaceRange]) == " " {
+            return true
+        }
+        
+        return false
+    }
+
     // TODO: UITextFieldDelegate
     public override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let _ = delegate?.zs_number?(textField: self, shouldChangeCharactersIn: range, replacementString: string)
-            
+
         if string == "\n" {
             
             endEditing(true)
@@ -275,49 +307,25 @@ open class ZSPhoneField: ZSNumberField {
         var text: String = String(textField.text ?? "")
         
         if string == "" {
-            
-            guard let spaceRange = Range(range, in: text) else { return true }
-
-            if String(text[spaceRange]) == " " {
-
-                guard let subRange = Range(NSRange(location: range.location - 1, length: range.length + 1), in: text) else { return true }
-
-                text.removeSubrange(subRange)
-                textField.text = text
-                
-                let start = textField.position(from: textField.beginningOfDocument, offset: range.location - 1)
-                let end = textField.position(from: textField.endOfDocument, offset: range.location - 1 -
-                    text.count)
-                
-                textField.selectedTextRange = textField.textRange(from: start!, to: end!)
-                
-                return false
-            }
 
             guard range.location > 0 else { return true }
-
-            let space = NSRange(location: range.location - 1, length: 1)
-
-            guard let _spaceRange_ = Range(space, in: text) else { return true }
-
-            if String(text[_spaceRange_]) == " " {
-
+            
+            if shouldDeleteBlank(range: range, fieldString: text) {
                 guard let subRange = Range(NSRange(location: range.location - 1, length: range.length + 1), in: text) else { return true }
-
+                
                 text.removeSubrange(subRange)
                 textField.text = text
                 
                 let start = textField.position(from: textField.beginningOfDocument, offset: range.location - 1)
-                let end = textField.position(from: textField.endOfDocument, offset: range.location - 1 -
-                    text.count)
-                
-                textField.selectedTextRange = textField.textRange(from: start!, to: end!)
+                textField.selectedTextRange = textField.textRange(from: start!, to: start!)
                 
                 return false
             }
 
             return true
         }
+        
+        if text.count >= 13 { return false }
         
         if let indexRange = Range(range, in: text) {
             text.replaceSubrange(indexRange, with: string)
@@ -326,6 +334,11 @@ open class ZSPhoneField: ZSNumberField {
         }
         self.text = text.replacingOccurrences(of: " ", with: "")
         
+        let offset = range.location + (shouldInsertBlank(range: range, fieldString: textField.text!) ? 2 : 1)
+
+        let start = textField.position(from: textField.beginningOfDocument, offset: offset)
+        textField.selectedTextRange = textField.textRange(from: start!, to: start!)
+        
         return false
     }
 }
@@ -333,7 +346,7 @@ open class ZSPhoneField: ZSNumberField {
 
 fileprivate extension UIColor {
     
-   func filed_dark(_ color: UIColor) -> UIColor {
+    func filed_dark(_ color: UIColor) -> UIColor {
         
         if #available(iOS 13.0, *) {
             return UIColor { (traitCollection) -> UIColor in
