@@ -281,7 +281,7 @@ open class ZSPhoneField: ZSNumberField {
     
     func shouldInsertBlank(range: NSRange, fieldString: String) -> Bool {
         
-        let space = NSRange(location: range.location + range.length, length: 1)
+        let space = NSRange(location: range.location + range.length - 1, length: 1)
         
         guard let spaceRange = Range(space, in: fieldString) else { return false }
         
@@ -325,18 +325,21 @@ open class ZSPhoneField: ZSNumberField {
             return true
         }
         
-        if text.count >= 13 { return false }
+        if (textField.text?.count ?? 0) >= 13 { return false }
         
         if let indexRange = Range(range, in: text) {
             text.replaceSubrange(indexRange, with: string)
         } else {
             text.append(string)
         }
+        
         self.text = text.replacingOccurrences(of: " ", with: "")
         
-        let offset = range.location + (shouldInsertBlank(range: range, fieldString: textField.text!) ? 2 : 1)
+        let length = range.location + string.count
+        
+        let offset = shouldInsertBlank(range: NSRange(location: range.location, length: string.count), fieldString: textField.text!) ? 1 : 0
 
-        let start = textField.position(from: textField.beginningOfDocument, offset: offset)
+        let start = textField.position(from: textField.beginningOfDocument, offset: offset + (length > 13 ? 13 : length))
         textField.selectedTextRange = textField.textRange(from: start!, to: start!)
         
         return false
