@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'ZSBaseUtil'
-    s.version          = '0.4.1'
+    s.version          = '0.4.11'
     s.summary          = '基础扩展库'
     
     # This description is used to generate tags and improve search results.
