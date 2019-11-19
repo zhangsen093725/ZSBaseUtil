@@ -312,7 +312,7 @@ public extension String {
     }
     
     var zs_removeWhitespacesAndLineBreak: String {
-        var sub = self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        var sub = trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         sub = sub.replacingOccurrences(of: "\n", with: "")
         sub = sub.replacingOccurrences(of: "\r", with: "")
         return sub
@@ -485,18 +485,17 @@ public extension Dictionary {
     
     var zs_queryURLEncodedString: String {
         
-        var query: String = ""
+        var querys: [String] = []
         
         for (key, value) in self {
             
             if let val = value as? String {
-                query = query + "\(key)" + "=" + val.zs_URLEncoded + "&"
+                querys.append("\(key)=\(val.zs_URLEncoded)")
                 continue
             }
             
-            query = query + "\(key)" + "=" + "\(value)" + "&"
+            querys.append("\(key)=\(value)")
         }
-        query.remove(at: query.index(before: query.endIndex))
-        return query
+        return querys.map{ String($0) }.joined(separator: "&")
     }
 }
