@@ -177,7 +177,7 @@ import JavaScriptCore
         
         if keyPath == "canGoBack" {
             isCanBack = change?[.newKey] as! Bool
-            delegate?.zs_webView?(webView, isRootWeb: isCanBack)
+            delegate?.zs_webView?(webView, isRootWeb: !isCanBack)
         }
     }
     
