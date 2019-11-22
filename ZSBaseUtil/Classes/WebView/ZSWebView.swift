@@ -77,7 +77,6 @@ import JavaScriptCore
         webView.scrollView.delegate = self
         webView.navigationDelegate = self
         webView.uiDelegate = self
-        webView.isUserInteractionEnabled = false
         
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
         webView.addObserver(self, forKeyPath: "title", options: .new, context: nil)
