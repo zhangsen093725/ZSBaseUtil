@@ -207,7 +207,7 @@ import JavaScriptCore
             if (translation.x < 0) {
                 //向左滑动
                 
-            } else if (point.x < KDevice.width * 0.3) {
+            } else if (point.x < UIScreen.main.bounds.width * 0.3) {
                 //向右滑动
                 webView.goBack()
             }
