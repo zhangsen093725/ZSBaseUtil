@@ -94,10 +94,6 @@ import JavaScriptCore
             webView.scrollView.contentInsetAdjustmentBehavior = .never
         }
         
-        let gesture = UIPanGestureRecognizer.init(target: target, action: #selector(backGestureRecognizer(_:)))
-        gesture.delegate = self
-        addGestureRecognizer(gesture)
-        
         addSubview(webView)
         return webView
     }()
@@ -117,8 +113,6 @@ import JavaScriptCore
     }
     
     public var isAllowZoom: Bool = false
-    
-    public var isBackGestureRecognizerEnable: Bool = true
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -184,40 +178,14 @@ import JavaScriptCore
         
         if keyPath == "canGoBack" {
             isCanBack = change?[.newKey] as! Bool
-        }
-    }
-    
-    @objc func backGestureRecognizer(_ recognizer: UIPanGestureRecognizer) {
-        
-        guard isCanBack else { return }
-        
-        guard recognizer.state == .ended else { return }
-        
-        let point = recognizer.location(in: recognizer.view)
-        
-        let translation = recognizer.translation(in: recognizer.view)
-        
-        let absX = fabsf(Float(translation.x))
-        let absY = fabsf(Float(translation.y))
-        
-        if (absX > absY ) {
-            
-            print(translation)
-            
-            if (translation.x < 0) {
-                //向左滑动
-                
-            } else if (point.x < UIScreen.main.bounds.width * 0.3) {
-                //向右滑动
-                webView.goBack()
-            }
+            delegate?.zs_webView?(webView, isRootWeb: isCanBack)
         }
     }
     
     // TODO: UIGestureRecognizerDelegate
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         next?.touchesBegan([touch], with: nil)
-        return isBackGestureRecognizerEnable
+        return false
     }
     
     // TODO: UIScrollViewDelegate
