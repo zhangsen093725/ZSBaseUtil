@@ -425,7 +425,8 @@ public extension String {
         
         let height = (imageFont == nil ? textFont.lineHeight : imageFont?.lineHeight) ?? 0
         let width = (image.size.width / image.size.height) * height
-        let y = (imageFont == nil ? textFont.descender : (textFont.lineHeight - (imageFont?.lineHeight ?? 0)) * 0.5 + textFont.descender)
+        let y = (imageFont == nil ? textFont.descender : (textFont.lineHeight - height) * 0.5 + textFont.descender - (imageFont?.descender ?? 0))
+
         
         attchment.bounds = CGRect(x: 0, y: y, width: width, height: height)
         
