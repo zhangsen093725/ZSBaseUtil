@@ -52,7 +52,7 @@ public extension FileManager {
 
 
 // MARK: - 文件遍历
-public extension FileManager {
+@objc public extension FileManager {
     
     /// 文件遍历
     /// - Parameters:
@@ -108,7 +108,7 @@ public extension FileManager {
 
 
 // MARK: - 文件写入
-public extension FileManager {
+@objc public extension FileManager {
     
     /// 写入文件内容
     /// - Parameters:
@@ -189,7 +189,7 @@ public extension FileManager {
 
 
 // MARK: - 创建文件（夹）
-public extension FileManager {
+@objc public extension FileManager {
     
     /// 创建文件夹
     /// - Parameter path: 文件夹存放的绝对路径
@@ -258,7 +258,7 @@ public extension FileManager {
 
 
 // MARK: - 删除文件（夹）
-public extension FileManager {
+@objc public extension FileManager {
     
     /// 删除文件(夹)
     /// - Parameter path: 绝对路径
@@ -319,7 +319,7 @@ public extension FileManager {
 
 
 // MARK: - 复制文件（夹）
-public extension FileManager {
+@objc public extension FileManager {
     
     /// 复制文件（夹）
     /// - Parameters:
@@ -382,7 +382,7 @@ public extension FileManager {
 
 
 // MARK: - 移动文件（夹）
-public extension FileManager {
+@objc public extension FileManager {
     
     /// 移动文件（夹） 覆盖原有文件
     /// - Parameters:
@@ -441,7 +441,7 @@ public extension FileManager {
 
 
 // MARK: - 文件（夹）是否存在
-public extension FileManager {
+@objc public extension FileManager {
     
     /// 文件路径是否存在
     /// - Parameter path: 绝对路径
@@ -484,7 +484,7 @@ public extension FileManager {
 
 
 // MARK: - 获取文件名 和 文件所在的文件夹的路径
-public extension FileManager {
+@objc public extension FileManager {
     
     /// 根据文件路径获取文件名称
     /// - Parameters:
@@ -541,7 +541,7 @@ public extension FileManager {
 
 
 // MARK: - 文件（夹）详细描述
-public extension FileManager {
+@objc public extension FileManager {
     
     /// 获取目录详细描述
     /// - Parameter path: 绝对路径
@@ -598,7 +598,7 @@ public extension FileManager {
 
 
 // MARK: - 获取文件大小
-public extension FileManager {
+@objc public extension FileManager {
     
     /// 目录大小转换为标准化字符串
     /// - Parameter size: 目录大小
@@ -675,7 +675,7 @@ public extension FileManager {
 
 
 // MARK: - 获取文件日期
-public extension FileManager {
+@objc public extension FileManager {
     
     /// 获取创建日期
     /// - Parameter path: 绝对路径
