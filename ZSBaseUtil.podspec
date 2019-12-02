@@ -54,7 +54,7 @@ Pod::Spec.new do |s|
         f.source_files = 'ZSBaseUtil/Classes/Field/**/*'
     end
     
-    s.subspec 'file' do |ff|
+    s.subspec 'File' do |ff|
            ff.source_files = 'ZSBaseUtil/Classes/File/**/*'
     end
     
