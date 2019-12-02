@@ -232,8 +232,7 @@ public extension KeyedDecodingContainer {
     
     /// 防止 Dictionary, Array, SubModel 解析失败
     func decodeIfPresent<T>(_ type: T.Type, forKey key: K) throws -> T? where T : Decodable {
-        
-        
+
         if let value = try? decode(String.self, forKey: key) {
             
             guard let jsonData = value.data(using: .utf8) else {

@@ -9,8 +9,8 @@
 import UIKit
 import ZSBaseUtil
 
-class ViewController: UIViewController {
-    
+class ViewController: UIViewController, ZSLoopScrollViewDataSource {
+  
     lazy var phoneField: ZSPhoneField = {
         
         let phoneField = ZSPhoneField()
@@ -27,12 +27,24 @@ class ViewController: UIViewController {
         return safariView
     }()
     
+    lazy var loopScrollView: ZSLoopScrollView = {
+        
+        let loopScrollView = ZSLoopScrollView()
+        loopScrollView.dataSource = self
+        loopScrollView.isAutoScroll = true
+        loopScrollView.isLoopScroll = true
+        loopScrollView.interval = 10
+        view.addSubview(loopScrollView)
+        return loopScrollView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         phoneField.frame = CGRect(x: 20, y: 100, width: 200, height: 30)
+        loopScrollView.frame = CGRect(x: 30, y: 150, width: 300, height: 200)
         // Do any additional setup after loading the view, typically from a nib.
-        safariView.load(url: "https://www.baidu.com".zs_url!)
+//        safariView.load(url: "https://www.baidu.com".zs_url!)
         
         navigationController?.navigationBar.isTranslucent = false
     }
@@ -44,8 +56,43 @@ class ViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        safariView.frame = view.bounds
+//        safariView.frame = view.bounds
     }
     
+    
+    // TODO: ZSLoopScrollViewDataSource
+    func zs_numberOfItemLoopScrollView(_ loopScrollView: ZSLoopScrollView) -> Int {
+        
+        return 3
+    }
+    
+    func zs_loopScrollView(_ loopScrollView: ZSLoopScrollView, itemAt index: Int, isFirst: Bool, isLast: Bool) -> UIView {
+        
+        
+        var imageView: UIImageView? = loopScrollView.viewWithIndex(index)
+        
+        if imageView == nil {
+            imageView = UIImageView()
+        }
+        
+        if isFirst {
+            imageView?.image = UIImage(named: "JzkLjvgyeglYlIkyj7ur")
+            return imageView!
+        }
+        
+        if isLast {
+            imageView?.image = UIImage(named: "JzkLjvgyeglYlIkyj7ur")
+            return imageView!
+        }
+        
+        imageView?.image = UIImage(named: "JzkLjvgyeglYlIkyj7ur")
+        
+        return imageView!
+    }
+    
+    func zs_loopScrollView(_ loopScrollView: ZSLoopScrollView, sizeAt index: Int, isFirst: Bool, isLast: Bool) -> CGSize {
+        
+        return loopScrollView.bounds.size
+    }
 }
 
