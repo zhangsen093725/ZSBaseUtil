@@ -55,15 +55,15 @@ Pod::Spec.new do |s|
     end
     
     s.subspec 'File' do |ff|
-           ff.source_files = 'ZSBaseUtil/Classes/File/**/*'
+        ff.source_files = 'ZSBaseUtil/Classes/File/**/*'
     end
     
     s.subspec 'Image' do |i|
         i.source_files = 'ZSBaseUtil/Classes/Image/**/*'
     end
     
-    s.subspec 'LoopScrool' do |l|
-           l.source_files = 'ZSBaseUtil/Classes/LoopScroll/**/*'
+    s.subspec 'LoopScroll' do |l|
+        l.source_files = 'ZSBaseUtil/Classes/LoopScroll/**/*'
     end
     
     s.subspec 'Notice' do |n|
@@ -71,7 +71,7 @@ Pod::Spec.new do |s|
     end
     
     s.subspec 'Player' do |p|
-           p.source_files = 'ZSBaseUtil/Classes/Player/**/*'
+        p.source_files = 'ZSBaseUtil/Classes/Player/**/*'
     end
     
     s.subspec 'TimeStamp' do |ts|
