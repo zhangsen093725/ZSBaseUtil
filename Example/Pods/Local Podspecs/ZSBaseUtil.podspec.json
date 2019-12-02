@@ -1,6 +1,6 @@
 {
   "name": "ZSBaseUtil",
-  "version": "0.4.18",
+  "version": "0.4.2",
   "summary": "基础扩展库",
   "description": "项目基础库",
   "homepage": "https://github.com/zhangsen093725/ZSBaseUtil",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/zhangsen093725/ZSBaseUtil.git",
-    "tag": "0.4.18"
+    "tag": "0.4.2"
   },
   "swift_versions": "5.0",
   "default_subspecs": "Default",
@@ -48,6 +48,10 @@
     {
       "name": "Image",
       "source_files": "ZSBaseUtil/Classes/Image/**/*"
+    },
+    {
+      "name": "LoopScrool",
+      "source_files": "ZSBaseUtil/Classes/LoopScrool/**/*"
     },
     {
       "name": "Notice",
