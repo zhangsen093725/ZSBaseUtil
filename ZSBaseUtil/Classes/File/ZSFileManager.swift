@@ -12,36 +12,36 @@ public extension FileManager {
     
     struct Directory {
         
-        static var Home: String {
+        public static var Home: String {
             
             return NSHomeDirectory()
         }
         
-        static var Temp: String {
+        public static var Temp: String {
             
             return NSTemporaryDirectory()
         }
         
         /// 若为 404 Not Found 则为没找到
-        static var Document: String {
+        public static var Document: String {
             
             return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first ?? "404 Not Found"
         }
         
         /// 若为 404 Not Found 则为没找到
-        static var Library: String {
+        public static var Library: String {
             
             return NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first ?? "404 Not Found"
         }
         
         /// 若为 404 Not Found 则为没找到
-        static var Cache: String {
+        public static var Cache: String {
             
             return NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first ?? "404 Not Found"
         }
         
         /// 若为 404 Not Found/Preferences 则为没找到
-        static var Preferences: String {
+        public static var Preferences: String {
             
             return Library + "/Preferences"
         }

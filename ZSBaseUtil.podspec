@@ -63,7 +63,7 @@ Pod::Spec.new do |s|
     end
     
     s.subspec 'LoopScrool' do |l|
-           l.source_files = 'ZSBaseUtil/Classes/LoopScrool/**/*'
+           l.source_files = 'ZSBaseUtil/Classes/LoopScroll/**/*'
     end
     
     s.subspec 'Notice' do |n|
