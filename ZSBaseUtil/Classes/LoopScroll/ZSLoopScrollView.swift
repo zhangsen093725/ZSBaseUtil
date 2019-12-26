@@ -32,7 +32,19 @@ public protocol ZSLoopScrollViewDataSource: class {
 
 public class ZSLoopScrollView: UIView, UIScrollViewDelegate {
     
-    lazy var scrollView: UIScrollView = {
+    /// scrollView
+    public var scrollView: UIScrollView {
+        
+        return _scrollView_
+    }
+    
+    /// 标记 page 的Control
+    public var pageControl: UIPageControl {
+        
+        return _pageControl_
+    }
+    
+    lazy var _scrollView_: UIScrollView = {
         
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
@@ -42,7 +54,7 @@ public class ZSLoopScrollView: UIView, UIScrollViewDelegate {
         return scrollView
     }()
     
-    lazy var pageControl: UIPageControl = {
+    lazy var _pageControl_: UIPageControl = {
         
         let pageControl = UIPageControl()
         pageControl.currentPage = 0
@@ -103,6 +115,7 @@ public class ZSLoopScrollView: UIView, UIScrollViewDelegate {
         guard pageCount > 0 else { return }
         
         pageControl.numberOfPages = _pageCount_
+        pageControl.isHidden = pageCount == 1
         
         for page in 0..<pageCount {
             
@@ -123,13 +136,13 @@ public class ZSLoopScrollView: UIView, UIScrollViewDelegate {
             if isFirst {
                 
                 subFrame = CGRect(x: (scrollView.frame.width - size.width) * 0.5 + scrollView.frame.width * CGFloat(page), y: (scrollView.frame.height - size.height) * 0.5, width: size.width, height: size.height)
-                subTag = 100
+                subTag = 101
                 
             }else if isLast {
                 
                 subFrame = CGRect(x: (scrollView.frame.width - size.width) * 0.5 + scrollView.frame.width * CGFloat(page), y: (scrollView.frame.height - size.height) * 0.5, width: size.width, height: size.height)
                 
-                subTag = 100 + pageCount + 1
+                subTag = 101 + index
             }
             
             view.frame = subFrame

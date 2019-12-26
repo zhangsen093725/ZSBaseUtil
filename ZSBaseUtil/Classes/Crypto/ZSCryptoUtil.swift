@@ -131,50 +131,40 @@ public extension Data {
                         key: String,
                         iv: String) -> Data? {
         
-        let keyLength = (method == .aes256 ? kCCKeySizeAES256 : kCCKeySizeAES128)
-        let keyPoniter = Data(key.utf8).withUnsafeBytes{ (bytes: UnsafeRawBufferPointer) -> UnsafeRawPointer? in
-            return bytes.baseAddress
-        }
-        guard keyPoniter != nil else { return nil }
+        let keyData = Data(key.utf8) as! NSData
+        let keyPoniter = keyData.bytes
         
-        let ivPoniter = Data(iv.utf8).withUnsafeBytes { (bytes: UnsafeRawBufferPointer) -> UnsafeRawPointer? in
-            return bytes.baseAddress
-        }
-        guard ivPoniter != nil else { return nil }
+        let ivData = Data(iv.utf8) as! NSData
+        let ivPoniter = ivData.bytes
         
-        let dataPoniter = withUnsafeBytes { (bytes: UnsafeRawBufferPointer) -> UnsafeRawPointer? in
-            return bytes.baseAddress
-        }
-        guard dataPoniter != nil else { return nil }
+        let dataPoniter = (self as! NSData).bytes
         
-        var buffer = Data(count: count + keyLength)
+        let dataOutSize: Int = count + (method == .aes256 ? kCCKeySizeAES256 : kCCKeySizeAES128)
         
-        let dataOut = buffer.withUnsafeMutableBytes { (bytes: UnsafeMutableRawBufferPointer) -> UnsafeMutableRawPointer? in
-            return bytes.baseAddress
-        }
+        let dataOut = UnsafeMutableRawPointer.allocate(byteCount: dataOutSize, alignment: 1)
+        
         guard dataOut != nil else { return nil }
         
-        var bytesDecrypted: size_t = 0
+        var bytesDecrypted: Int = 0
         
         let cryptorStatus = CCCrypt(operation,
-                                    CCAlgorithm(kCCAlgorithmAES128),
+                                    CCAlgorithm(kCCAlgorithmAES),
                                     CCOptions(kCCOptionPKCS7Padding),
                                     keyPoniter,
-                                    keyLength,
+                                    keyData.count,
                                     ivPoniter,
                                     dataPoniter,
-                                    size_t(count),
+                                    count,
                                     dataOut,
-                                    size_t(buffer.count),
+                                    dataOutSize,
                                     &bytesDecrypted)
         
         
         guard cryptorStatus == kCCSuccess else {
-            free(dataOut)
+            dataOut.deallocate()
             return nil
         }
         
-        buffer.count = bytesDecrypted
-        return buffer
+        return Data(bytes: dataOut, count: bytesDecrypted)
     }
 }
