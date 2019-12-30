@@ -33,7 +33,11 @@ import WebKit
     
     public weak var delegate: ZSWebJSToolDelegate?
     
+    public var isAlreadyFuncs: Bool = false
+    
     public func addScriptMessageHandler(_ webView: WKWebView, funcNames: [String]) {
+        
+        isAlreadyFuncs = true
         
         let userContentController = webView.configuration.userContentController
         
@@ -43,6 +47,8 @@ import WebKit
     }
     
     public func removeScriptMessageHandler(_ webView: WKWebView, funcNames: [String]) {
+        
+        isAlreadyFuncs = false
         
         let userContentController = webView.configuration.userContentController
         
