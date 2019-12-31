@@ -8,27 +8,6 @@
 
 import Foundation
 
-// MARK: - Timer扩展
-@objc public extension Timer {
-    
-    class func zs_supportiOS_10EarlierTimer(_ interval: TimeInterval, repeats: Bool, block: @escaping (_ timer: Timer) -> Void) -> Timer {
-        
-        if #available(iOS 10.0, *) {
-            return Timer.init(timeInterval: interval, repeats: repeats, block: block)
-        } else {
-            return Timer.init(timeInterval: interval, target: self, selector: #selector(runTimer(_:)), userInfo: block, repeats: repeats)
-        }
-    }
-    
-    @objc private class func runTimer(_ timer: Timer) -> Void {
-        
-        guard let block: ((Timer) -> Void) = timer.userInfo as? ((Timer) -> Void) else { return }
-        
-        block(timer)
-    }
-}
-
-
 // MARK: - NSObject扩展
 @objc public extension NSObject {
     

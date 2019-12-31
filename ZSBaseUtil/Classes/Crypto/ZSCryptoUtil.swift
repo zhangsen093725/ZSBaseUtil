@@ -131,19 +131,17 @@ public extension Data {
                         key: String,
                         iv: String) -> Data? {
         
-        let keyData = Data(key.utf8) as! NSData
+        let keyData = Data(key.utf8) as NSData
         let keyPoniter = keyData.bytes
         
-        let ivData = Data(iv.utf8) as! NSData
+        let ivData = Data(iv.utf8) as NSData
         let ivPoniter = ivData.bytes
         
-        let dataPoniter = (self as! NSData).bytes
+        let dataPoniter = (self as NSData).bytes
         
         let dataOutSize: Int = count + (method == .aes256 ? kCCKeySizeAES256 : kCCKeySizeAES128)
         
         let dataOut = UnsafeMutableRawPointer.allocate(byteCount: dataOutSize, alignment: 1)
-        
-        guard dataOut != nil else { return nil }
         
         var bytesDecrypted: Int = 0
         
