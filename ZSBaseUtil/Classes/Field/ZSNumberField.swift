@@ -166,6 +166,7 @@ open class ZSNumberField: UIView, UITextFieldDelegate {
         inputAccessoryView.backgroundColor = style.input.color
         inputAccessoryView.cancelBtn.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
         inputAccessoryView.doneBtn.addTarget(self, action: #selector(doneAction), for: .touchUpInside)
+        inputAccessoryView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44)
         return inputAccessoryView
     }()
     
@@ -183,14 +184,13 @@ open class ZSNumberField: UIView, UITextFieldDelegate {
     open override func layoutSubviews() {
         super.layoutSubviews()
         textField.frame = bounds
-        zs_inputAccessoryView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44)
     }
     
-    public func becomeFirstResponder() {
+    public func zs_becomeFirstResponder() {
         textField.becomeFirstResponder()
     }
     
-    public func resignFirstResponder() {
+    public func zs_resignFirstResponder() {
         textField.resignFirstResponder()
     }
     
