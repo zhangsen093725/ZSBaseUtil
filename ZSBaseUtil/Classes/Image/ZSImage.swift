@@ -11,7 +11,7 @@ public extension UIImage {
     
     func zs_scaled(_ newSize: CGSize) -> UIImage {
         
-        guard size != .zero else { return self }
+        guard newSize != .zero else { return self }
         
         let clipW = size.width >= newSize.width ? newSize.width : size.width
         let clipH = size.height >= newSize.height ? newSize.height : size.height
