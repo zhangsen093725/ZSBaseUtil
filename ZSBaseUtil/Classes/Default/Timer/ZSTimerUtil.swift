@@ -37,7 +37,7 @@ import Foundation
     /// - Parameters:
     ///   - fps: 刷新频率，必须是60的约数
     ///   - block: 回调
-    class func zs_displayLink(_ fps: Int,
+    public class func zs_displayLink(_ fps: Int,
                               block: @escaping (_ displayLink: CADisplayLink) -> Void) -> ZSDisplayLink {
         
         let weak_displayLink = ZSDisplayLink()
@@ -63,7 +63,7 @@ import Foundation
         userInfo!(displayLink)
     }
     
-    func invalidate() {
+    public func invalidate() {
         displayLink?.remove(from: RunLoop.current, forMode: .default)
         displayLink?.invalidate()
         displayLink = nil
@@ -80,7 +80,7 @@ import Foundation
     
     var timer: DispatchSourceTimer?
     
-    convenience init(interval: TimeInterval,
+    public convenience init(interval: TimeInterval,
                      repeats: Bool = true,
                      block: @escaping () -> Void) {
         self.init()
@@ -98,11 +98,11 @@ import Foundation
         super.init()
     }
     
-    func resume() {
+    public func resume() {
         timer?.resume()
     }
     
-    func invalidate() {
+    public func invalidate() {
         timer?.cancel()
         timer = nil
     }
