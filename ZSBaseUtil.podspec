@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'ZSBaseUtil'
-    s.version          = '0.4.40'
+    s.version          = '0.5.0'
     s.summary          = '基础扩展库'
     
     # This description is used to generate tags and improve search results.
@@ -34,10 +34,6 @@ Pod::Spec.new do |s|
         a.source_files = 'ZSBaseUtil/Classes/**/*'
     end
     
-    s.subspec 'Button' do |b|
-        b.source_files = 'ZSBaseUtil/Classes/Button/**/*'
-    end
-    
     s.subspec 'Codable' do |c|
         c.source_files = 'ZSBaseUtil/Classes/Codable/**/*'
     end
@@ -49,11 +45,7 @@ Pod::Spec.new do |s|
     s.subspec 'Default' do |d|
         d.source_files = 'ZSBaseUtil/Classes/Default/**/*'
     end
-    
-    s.subspec 'Field' do |f|
-        f.source_files = 'ZSBaseUtil/Classes/Field/**/*'
-    end
-    
+
     s.subspec 'File' do |ff|
         ff.source_files = 'ZSBaseUtil/Classes/File/**/*'
     end
@@ -61,42 +53,13 @@ Pod::Spec.new do |s|
     s.subspec 'Image' do |i|
         i.source_files = 'ZSBaseUtil/Classes/Image/**/*'
     end
-    
-    s.subspec 'LoopScroll' do |l|
-        l.source_files = 'ZSBaseUtil/Classes/LoopScroll/**/*'
-    end
-    
+
     s.subspec 'Notice' do |n|
         n.source_files = 'ZSBaseUtil/Classes/Notice/**/*'
     end
-    
-    s.subspec 'Player' do |p|
-        p.source_files = 'ZSBaseUtil/Classes/Player/**/*'
-    end
-    
+
     s.subspec 'TimeStamp' do |ts|
         ts.source_files = 'ZSBaseUtil/Classes/TimeStamp/**/*'
-    end
-    
-    s.subspec 'Toast' do |t|
-        
-        t.source_files = 'ZSBaseUtil/Classes/Toast/**/*'
-        
-        t.subspec 'Load' do |l|
-            l.source_files = 'ZSBaseUtil/Classes/Toast/Load/ZSLoadView.swift'
-        end
-        
-        t.subspec 'Toast' do |tt|
-            tt.source_files = 'ZSBaseUtil/Classes/Toast/Toast/ZSToastView.swift'
-        end
-    end
-    
-    s.subspec 'ViewAnimation' do |v|
-        v.source_files = 'ZSBaseUtil/Classes/ViewAnimation/**/*'
-    end
-    
-    s.subspec 'WebView' do |w|
-        w.source_files = 'ZSBaseUtil/Classes/WebView/**/*'
     end
     
     # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
