@@ -50,13 +50,6 @@ public extension UIImage {
         return image ?? self
     }
     
-    func zs_fixOrientation(orientation: UIImage.Orientation = .up) -> UIImage {
-        
-        guard let ciImage = ciImage else { return self }
-        
-        return UIImage(ciImage: ciImage, scale: scale, orientation: orientation)
-    }
-    
     func zs_fixOrientation() -> UIImage {
 
         guard imageOrientation != .up else { return self }
