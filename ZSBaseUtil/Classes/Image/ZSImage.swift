@@ -50,6 +50,57 @@ public extension UIImage {
         return image ?? self
     }
     
+    func zs_fixOrientation(orientation: UIImage.Orientation = .up) -> UIImage {
+        
+        guard let ciImage = ciImage else { return self }
+        
+        return UIImage(ciImage: ciImage, scale: scale, orientation: orientation)
+    }
+    
+    func zs_fixOrientation() -> UIImage {
+
+        guard imageOrientation != .up else { return self }
+
+        var transform = CGAffineTransform.identity
+        
+        switch imageOrientation {
+        case .down, .downMirrored:
+            transform = transform.translatedBy(x: size.width, y: size.height)
+            transform = transform.rotated(by: .pi)
+        case .left, .leftMirrored:
+            transform = transform.translatedBy(x: size.width, y: 0)
+            transform = transform.rotated(by: .pi / 2)
+        case .right, .rightMirrored:
+            transform = transform.translatedBy(x: 0, y: size.height)
+            transform = transform.rotated(by: -.pi / 2)
+        default:break
+        }
+        
+        switch imageOrientation {
+        case .upMirrored, .downMirrored:
+            transform = transform.translatedBy(x: size.width, y: 0)
+            transform = transform.scaledBy(x: -1, y: 1)
+        case .leftMirrored, .rightMirrored:
+            transform = transform.translatedBy(x: size.height, y: 0)
+            transform = transform.scaledBy(x: -1, y: 1)
+        default:break
+        }
+        
+        guard let _cgImage_ = cgImage else { return self }
+        
+        guard let space = _cgImage_.colorSpace else { return self }
+        
+        guard let ctx = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: _cgImage_.bitsPerComponent, bytesPerRow: 0, space: space, bitmapInfo: _cgImage_.bitmapInfo.rawValue) else { return self }
+        ctx.concatenate(transform)
+        
+        ctx.draw(cgImage!, in: CGRect(x: 0, y: 0, width: size.height, height: size.width))
+        
+        guard let cgimg: CGImage = ctx.makeImage() else { return self }
+        let img = UIImage(cgImage: cgimg)
+        
+        return img
+    }
+    
     class func zs_image(color: UIColor) -> UIImage? {
         
         let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
