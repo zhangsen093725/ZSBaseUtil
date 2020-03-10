@@ -88,7 +88,7 @@ public extension ZSCodable {
     // TODO: 模型转JSON字符串
     func zs_toJSONString() throws -> String {
         
-        guard let string = self.zs_dictionary.zs_json else {
+        guard let string = zs_dictionary.zs_json else {
             throw ZSCodableError.zs_modelToJsonFail
         }
         

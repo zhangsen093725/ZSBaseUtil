@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = naviVC
         window?.makeKeyAndVisible()
         
-        print(string.zs_url)
+        ZSCodeableDemo.demo()
         
         
         return true

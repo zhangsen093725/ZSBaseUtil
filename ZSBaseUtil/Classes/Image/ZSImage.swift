@@ -7,7 +7,7 @@
 
 import UIKit
 
-public extension UIImage {
+@objc public extension UIImage {
     
     var zs_fixOrientationImage: UIImage {
 

@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - 常用沙盒路径
-public extension FileManager {
+@objc public extension FileManager {
     
     struct Directory {
         

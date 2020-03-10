@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		42B269C7D6AD46A4E742FD92 /* Pods_ZSBaseUtil_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0C51CC9D8B39433C92ED59 /* Pods_ZSBaseUtil_Example.framework */; };
+		524FBB852410AF7D00B58048 /* ZSCodeableDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524FBB842410AF7D00B58048 /* ZSCodeableDemo.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		12C39C52039852C6209B32D3 /* Pods-ZSBaseUtil_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZSBaseUtil_Tests.debug.xcconfig"; path = "Target Support Files/Pods-ZSBaseUtil_Tests/Pods-ZSBaseUtil_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		524FBB842410AF7D00B58048 /* ZSCodeableDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZSCodeableDemo.swift; sourceTree = "<group>"; };
 		5B4322158FDD92DA6012D1C1 /* Pods-ZSBaseUtil_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZSBaseUtil_Example.release.xcconfig"; path = "Target Support Files/Pods-ZSBaseUtil_Example/Pods-ZSBaseUtil_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* ZSBaseUtil_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZSBaseUtil_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				524FBB842410AF7D00B58048 /* ZSCodeableDemo.swift */,
 			);
 			name = "Example for ZSBaseUtil";
 			path = ZSBaseUtil;
@@ -331,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				524FBB852410AF7D00B58048 /* ZSCodeableDemo.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
