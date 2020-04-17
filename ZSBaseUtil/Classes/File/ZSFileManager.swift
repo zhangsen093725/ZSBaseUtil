@@ -60,6 +60,7 @@ import Foundation
     ///   - isDeep: 是否深遍历 (1. 浅遍历：返回当前目录下的所有文件和文件夹；
     ///                       2. 深遍历：返回当前目录下及子目录下的所有文件和文件夹)
     ///   - extensions: 需要遍历的文件扩展，默认为全部遍历
+    @discardableResult
     class func listFilesInDirectory(at path: String, isDeep: Bool = false) -> [String] {
         
         return self.default.listFilesInDirectory(at: path, isDeep: isDeep)
@@ -71,6 +72,7 @@ import Foundation
     ///   - isDeep: 是否深遍历 (1. 浅遍历：返回当前目录下的所有文件和文件夹；
     ///                       2. 深遍历：返回当前目录下及子目录下的所有文件和文件夹)
     ///   - extensions: 需要遍历的文件扩展，默认为全部遍历
+    @discardableResult
     func listFilesInDirectory(at path: String,
                               isDeep: Bool = false,
                               pathsMatching extensions: [String] = []) -> [String] {
@@ -114,6 +116,7 @@ import Foundation
     /// - Parameters:
     ///   - path: 绝对路径
     ///   - content: 写入内容，目前支持 String、Data、Array、Dictionary、UIImage
+    @discardableResult
     class func write(to path: String, for content: Any) -> Bool {
         
         return self.default.write(to: path, for: content)
@@ -123,6 +126,7 @@ import Foundation
     /// - Parameters:
     ///   - path: 绝对路径
     ///   - content: 写入内容，目前支持 String、Data、Array、Dictionary、UIImage
+    @discardableResult
     func write(to path: String, for content: Any) -> Bool {
         
         guard isExist(at: path) else {
@@ -193,6 +197,7 @@ import Foundation
     
     /// 创建文件夹
     /// - Parameter path: 文件夹存放的绝对路径
+    @discardableResult
     class func createDirectory(at path: String) -> Bool{
         
         return self.default.createDirectory(at: path)
@@ -200,6 +205,7 @@ import Foundation
     
     /// 创建文件夹
     /// - Parameter path: 文件夹存放的绝对路径
+    @discardableResult
     func createDirectory(at path: String) -> Bool{
         
         do {
@@ -218,6 +224,7 @@ import Foundation
     ///   - path: 存放的绝对路径
     ///   - content: 文件内容，默认为 nil 表示空文件
     ///   - isOverwrite: 是否覆盖原有文件，默认是 true
+    @discardableResult
     class func createFile(at path: String,
                           content: Any? = nil,
                           isOverwrite: Bool = true) -> Bool {
@@ -230,6 +237,7 @@ import Foundation
     ///   - path: 存放的绝对路径
     ///   - content: 文件内容，默认为 nil 表示空文件
     ///   - isOverwrite: 是否覆盖原有文件，默认是 true
+    @discardableResult
     func createFile(at path: String,
                     content: Any? = nil,
                     isOverwrite: Bool = true) -> Bool {
@@ -262,6 +270,7 @@ import Foundation
     
     /// 删除文件(夹)
     /// - Parameter path: 绝对路径
+    @discardableResult
     class func remove(at path: String) -> Bool {
         
         return self.default.remove(at: path)
@@ -269,6 +278,7 @@ import Foundation
     
     /// 删除文件(夹)
     /// - Parameter path: 绝对路径
+    @discardableResult
     func remove(at path: String) -> Bool {
         
         guard isExist(at: path) else { return true }
@@ -287,6 +297,7 @@ import Foundation
     
     /// 清空文件夹
     /// - Parameter path: 文件夹的绝对路径
+    @discardableResult
     class func clear(atDir path: String) -> Bool {
         
         return self.default.clear(atDir: path)
@@ -294,6 +305,7 @@ import Foundation
     
     /// 清空文件夹
     /// - Parameter path: 文件夹的绝对路径
+    @discardableResult
     func clear(atDir path: String) -> Bool {
         
         guard isDirectory(at: path) else {
@@ -326,6 +338,7 @@ import Foundation
     ///   - path: 源绝对路径
     ///   - toPath: 目标绝对路径
     ///   - isOverwrite: 是否覆盖原有文件，默认是 true
+    @discardableResult
     class func copy(at path: String,
                     toPath: String,
                     isOverwrite: Bool = true) -> Bool {
@@ -338,6 +351,7 @@ import Foundation
     ///   - path: 源路径
     ///   - toPath: 目标路径
     ///   - isOverwrite: 是否覆盖原有文件，默认是 true
+    @discardableResult
     func copy(at path: String,
               toPath: String,
               isOverwrite: Bool = true) -> Bool {
@@ -388,6 +402,7 @@ import Foundation
     /// - Parameters:
     ///   - path: 源绝对路径
     ///   - toPath: 目标绝对路径
+    @discardableResult
     class func move(at path: String,
                     toPath: String) -> Bool {
         
@@ -398,6 +413,7 @@ import Foundation
     /// - Parameters:
     ///   - path: 源路径
     ///   - toPath: 目标路径
+    @discardableResult
     func move(at path: String,
               toPath: String) -> Bool {
         
