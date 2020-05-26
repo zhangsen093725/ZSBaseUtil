@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'ZSBaseUtil'
-    s.version          = '0.5.7'
+    s.version          = '0.5.8'
     s.summary          = '基础扩展库'
     
     # This description is used to generate tags and improve search results.
@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
     项目基础库
     DESC
     
-    s.homepage         = 'https://github.com/zhangsen093725/ZSBaseUtil'
+    s.homepage         = 'https://gitee.com/zhangsen093725/ZSBaseUtil'
     # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.author           = { 'zhangsen093725' => '376019018@qq.com' }
-    s.source           = { :git => 'https://github.com/zhangsen093725/ZSBaseUtil.git', :tag => s.version.to_s }
+    s.source           = { :git => 'https://gitee.com/zhangsen093725/ZSBaseUtil.git', :tag => s.version.to_s }
     s.swift_version    = '5.0'
     
     s.default_subspecs = 'Default'

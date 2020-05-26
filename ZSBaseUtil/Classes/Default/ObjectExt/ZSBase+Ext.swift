@@ -1,6 +1,6 @@
 //
-//  ZSView.swift
-//  JadeKing
+//
+//
 //
 //  Created by 张森 on 2019/8/3.
 //  Copyright © 2019 张森. All rights reserved.
@@ -53,7 +53,7 @@ import Foundation
     
     class func zs_paramsValue(_ object: Any?) -> Any {
         
-        guard object != nil else { return NSNull() }
+        guard object != nil else { return "" }
         
         return object!
     }
