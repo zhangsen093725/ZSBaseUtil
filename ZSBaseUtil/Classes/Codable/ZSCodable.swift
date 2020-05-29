@@ -17,6 +17,8 @@ public enum ZSCodableError: Error {
     case zs_jsonToArrayFail
     /// 字典转json失败
     case zs_dictToJsonFail
+    /// 数组转json失败
+    case zs_arrayToJsonFail
     /// model转json失败
     case zs_modelToJsonFail
 }
@@ -123,7 +125,7 @@ public extension Array {
     func zs_modelFromJson<T: Decodable>(_ type: [T].Type) throws -> Array<T> {
         
         guard let JSONString = zs_json else {
-            throw ZSCodableError.zs_dictToJsonFail
+            throw ZSCodableError.zs_arrayToJsonFail
         }
         
         guard let jsonData = JSONString.data(using: .utf8) else {
@@ -133,7 +135,7 @@ public extension Array {
         let decoder = JSONDecoder()
         
         guard let obj = try? decoder.decode(type, from: jsonData) else {
-            throw ZSCodableError.zs_jsonToArrayFail
+            throw ZSCodableError.zs_jsonToModelFail
         }
         
         return obj

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'ZSBaseUtil'
-    s.version          = '0.5.8'
+    s.version          = '0.6.0'
     s.summary          = '基础扩展库'
     
     # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
     s.source           = { :git => 'https://gitee.com/zhangsen093725/ZSBaseUtil.git', :tag => s.version.to_s }
     s.swift_version    = '5.0'
     
-    s.default_subspecs = 'Default'
+    s.default_subspecs = 'All'
     
     s.subspec 'All' do |a|
         a.source_files = 'ZSBaseUtil/Classes/**/*'
@@ -43,9 +43,13 @@ Pod::Spec.new do |s|
     end
     
     s.subspec 'Default' do |d|
-        d.source_files = 'ZSBaseUtil/Classes/Default/**/*'
+        d.source_files = 'ZSBaseUtil/Classes/Default/**/*
     end
-
+    
+    s.subspec 'Timer' do |d|
+        d.source_files = 'ZSBaseUtil/Classes/Timer/**/*'
+    end
+    
     s.subspec 'File' do |ff|
         ff.source_files = 'ZSBaseUtil/Classes/File/**/*'
     end
@@ -53,11 +57,11 @@ Pod::Spec.new do |s|
     s.subspec 'Image' do |i|
         i.source_files = 'ZSBaseUtil/Classes/Image/**/*'
     end
-
+    
     s.subspec 'Notice' do |n|
         n.source_files = 'ZSBaseUtil/Classes/Notice/**/*'
     end
-
+    
     s.subspec 'TimeStamp' do |ts|
         ts.source_files = 'ZSBaseUtil/Classes/TimeStamp/**/*'
     end
