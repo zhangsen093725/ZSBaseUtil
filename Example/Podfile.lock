@@ -1,5 +1,5 @@
 PODS:
-  - ZSBaseUtil/All (0.5.6)
+  - ZSBaseUtil/All (0.6.0)
 
 DEPENDENCIES:
   - ZSBaseUtil/All (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ZSBaseUtil: 4b3a115d34ae1d36fefe6029a8296337b3f94696
+  ZSBaseUtil: db12e0a07a5796fcc563d40955358d724a83179d
 
 PODFILE CHECKSUM: b2b87b9c0f912436087afdd149f145e9eb059d07
 
