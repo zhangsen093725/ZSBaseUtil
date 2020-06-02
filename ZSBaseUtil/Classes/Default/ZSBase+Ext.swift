@@ -310,6 +310,17 @@ public extension String {
     var zs_URLDecoded: String {
         return removingPercentEncoding ?? self
     }
+    
+    /// 自定义url编码
+    /// - Parameter allowedCharacters: "!*'();:@&=+$,/?#[]"
+    /// - Returns: 编码后的String
+    func zs_URLEncoded(custome allowedCharacters: String) -> String {
+        
+        let chatSet = CharacterSet(charactersIn: allowedCharacters)
+        
+        return addingPercentEncoding(withAllowedCharacters:
+        chatSet) ?? self
+    }
 }
 
 
