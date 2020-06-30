@@ -44,33 +44,15 @@ public extension Encodable {
     }
     
     // TODO: 模型数组转JSON字符串
-    static func zs_array<T : Encodable>(from array: [T]) -> String {
-        
-        let tempArray: [Any] = array.map({$0.zs_map})
-        
-        return tempArray.zs_json ?? ""
+    static func zs_array<T : Encodable>(from array: [T]) -> [Any] {
+
+        return array.map({$0.zs_map})
     }
     
     
     static func zs_json<T : Encodable>(from array: [T]) -> String {
-        
-        var tempArray: [Any] = []
-        
-        for object in array
-        {
-            let encoder = JSONEncoder()
-            encoder.keyEncodingStrategy = .useDefaultKeys
-            if let data = try? encoder.encode(object)
-            {
-                if let obj = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                {
-                    tempArray.append(obj)
-                    continue
-                }
-            }
-            tempArray.append("")
-        }
-        return tempArray.zs_json ?? ""
+    
+        return zs_array(from: array).zs_json ?? ""
     }
     
     static func zs_originArray<T : Encodable>(from array: [T]) -> [Any] {
