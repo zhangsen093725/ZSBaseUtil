@@ -57,8 +57,9 @@ class ZSCodeableDemo {
         let models: [SubModel]? = [sub, sub, sub].zs_model()
         let submodels: [SubModel]? = SubModel.zs_json(from: models!).zs_model()
         
-        print(model!)
         print(SubModel.zs_json(from: models!))
+        
+        print(model!)
         print(array!)
         print(submodels!)
     }

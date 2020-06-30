@@ -11,7 +11,29 @@ import Foundation
 public extension Encodable {
     
     // TODO: 模型转JSON字符串
+    var zs_map: [String : Any] {
+        
+        let mirro = Mirror(reflecting: self)
+        var dict = [String : Any]()
+        for case let (key?, value) in mirro.children {
+            dict[key] = value
+        }
+        return dict
+    }
+    
     var zs_json: String {
+               
+        guard let string = zs_map.zs_json else { return "" }
+        
+        return string
+    }
+    
+    var zs_originMap: [String : Any] {
+        
+        return zs_originJson.zs_dictionary ?? [:]
+    }
+    
+    var zs_originJson: String {
         
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .useDefaultKeys
@@ -22,6 +44,14 @@ public extension Encodable {
     }
     
     // TODO: 模型数组转JSON字符串
+    static func zs_array<T : Encodable>(from array: [T]) -> String {
+        
+        var tempArray: [Any] = array.map({$0.zs_map})
+        
+        return tempArray.zs_json ?? ""
+    }
+    
+    
     static func zs_json<T : Encodable>(from array: [T]) -> String {
         
         var tempArray: [Any] = []
@@ -41,6 +71,33 @@ public extension Encodable {
             tempArray.append("")
         }
         return tempArray.zs_json ?? ""
+    }
+    
+    static func zs_originArray<T : Encodable>(from array: [T]) -> [Any] {
+        
+        var tempArray: [Any] = []
+        
+        for object in array
+        {
+            let encoder = JSONEncoder()
+            encoder.keyEncodingStrategy = .useDefaultKeys
+            if let data = try? encoder.encode(object)
+            {
+                if let obj = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                {
+                    tempArray.append(obj)
+                    continue
+                }
+            }
+            tempArray.append("")
+        }
+        return tempArray
+    }
+    
+    
+    static func zs_originJson<T : Encodable>(from array: [T]) -> String {
+        
+        return zs_originArray(from: array).zs_json ?? ""
     }
 }
 
