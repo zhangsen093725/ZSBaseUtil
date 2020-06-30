@@ -1,0 +1,6 @@
+framework module ZSBaseUtil {
+  umbrella header "ZSBaseUtil-umbrella.h"
+
+  export *
+  module * { export * }
+}

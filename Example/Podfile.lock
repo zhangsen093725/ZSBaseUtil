@@ -1,0 +1,16 @@
+PODS:
+  - ZSBaseUtil/All (0.6.1)
+
+DEPENDENCIES:
+  - ZSBaseUtil/All (from `../`)
+
+EXTERNAL SOURCES:
+  ZSBaseUtil:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ZSBaseUtil: e92817d8baccc9bffcc261bf3d1dc296891ae8e2
+
+PODFILE CHECKSUM: b2b87b9c0f912436087afdd149f145e9eb059d07
+
+COCOAPODS: 1.9.0
