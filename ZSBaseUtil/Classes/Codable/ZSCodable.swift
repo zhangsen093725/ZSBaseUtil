@@ -46,7 +46,7 @@ public extension Encodable {
     // TODO: 模型数组转JSON字符串
     static func zs_array<T : Encodable>(from array: [T]) -> String {
         
-        var tempArray: [Any] = array.map({$0.zs_map})
+        let tempArray: [Any] = array.map({$0.zs_map})
         
         return tempArray.zs_json ?? ""
     }
