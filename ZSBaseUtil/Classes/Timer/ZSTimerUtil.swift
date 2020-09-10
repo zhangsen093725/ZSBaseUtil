@@ -33,28 +33,29 @@ import Foundation
     private var userInfo: ((_ displayLink: CADisplayLink) -> Void)?
     private var displayLink: CADisplayLink?
     
+    private override init() {
+        super.init()
+    }
+    
     /// 初始化CADisplayLink
     /// - Parameters:
     ///   - fps: 刷新频率，表示一秒钟刷新多少次，默认是60次
     ///   - block: 回调
-    public class func zs_displayLink(_ fps: Int = 60,
-                              block: @escaping (_ displayLink: CADisplayLink) -> Void) -> ZSDisplayLink {
+    public convenience init(fps: Int = 60,
+                            block: @escaping (_ displayLink: CADisplayLink) -> Void) {
         
-        let weak_displayLink = ZSDisplayLink()
-        weak_displayLink.userInfo = block
+        self.init()
         
-        weak_displayLink.displayLink = CADisplayLink(target: weak_displayLink, selector: #selector(runDisplayLink(_:)))
+        userInfo = block
         
-        guard fps > 0 else { return weak_displayLink }
+        displayLink = CADisplayLink(target: self, selector: #selector(runDisplayLink(_:)))
         
         if #available(iOS 10.0, *) {
-            weak_displayLink.displayLink?.preferredFramesPerSecond = fps
+            displayLink?.preferredFramesPerSecond = fps
         } else {
-            weak_displayLink.displayLink?.frameInterval = fps
+            displayLink?.frameInterval = fps
         }
-        weak_displayLink.displayLink?.add(to: RunLoop.current, forMode: .default)
-        
-        return weak_displayLink
+        displayLink?.add(to: RunLoop.current, forMode: .default)
     }
     
     @objc private func runDisplayLink(_ displayLink: CADisplayLink) -> Void {
@@ -81,20 +82,20 @@ import Foundation
     var timer: DispatchSourceTimer?
     
     public convenience init(interval: TimeInterval,
-                     repeats: Bool = true,
-                     block: @escaping () -> Void) {
+                            repeats: Bool = true,
+                            block: @escaping () -> Void) {
         self.init()
         
-        self.timerQueue = DispatchQueue(label: "com.ZSTimer.zhangsen", qos: .userInitiated)
+        timerQueue = DispatchQueue(label: "com.ZSTimer.zhangsen", qos: .userInitiated)
         
         let repeating: DispatchTimeInterval = repeats ? .nanoseconds(Int(interval * pow(10, 9))) : .never
         
-        self.timer = DispatchSource.makeTimerSource(queue: self.timerQueue)
+        self.timer = DispatchSource.makeTimerSource(queue: timerQueue)
         timer?.schedule(deadline: .now() + interval, repeating: repeating)
         timer?.setEventHandler(handler: block)
     }
     
-    override init() {
+    private override init() {
         super.init()
     }
     
